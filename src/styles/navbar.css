@@ -19,6 +19,10 @@ nav {
   height: 80px;
   background-color: #F9F9F7;
 }
+nav #logo-dark {
+  width: 261px;
+  height: 91px;
+}
 nav ul {
   margin: 20px;
   display: flex;
