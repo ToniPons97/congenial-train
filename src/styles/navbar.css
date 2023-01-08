@@ -1,0 +1,70 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  font-family: "Mulish", sans-serif;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px;
+  background-color: #F9F9F7;
+}
+nav ul {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+nav ul li {
+  list-style: none;
+}
+nav ul li:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+nav ul li a:visited {
+  color: #2C2C2C;
+}
+nav ul li:first-child {
+  font-size: 16px;
+  font-weight: 800;
+  color: #2C2C2C;
+  letter-spacing: 0.1rem;
+}
+nav ul li:nth-child(2) {
+  margin-left: 20px;
+}
+nav ul li:nth-child(3) {
+  margin-right: 20px;
+}
+nav ul li button {
+  appearance: none;
+  background-color: #F9F9F7;
+  border: 1px solid #2C2C2C;
+  border-radius: 20px;
+  width: 137px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+nav ul li button:hover:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+/*# sourceMappingURL=navbar.css.map */
