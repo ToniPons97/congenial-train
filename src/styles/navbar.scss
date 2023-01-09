@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-@mixin btn-svg-hover {
+@mixin btn-svg-a-hover {
     &:hover {
         cursor: pointer;
         opacity: 0.6;
@@ -17,6 +17,8 @@ a {
 }
 
 nav {
+    position: fixed;
+    width: 100vw;
     font-family: 'Mulish', sans-serif;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.8);
     display: flex;
@@ -40,7 +42,7 @@ nav {
         gap: 1rem;
     
         li {
-            @include btn-svg-hover;
+            @include btn-svg-a-hover;
 
             a:visited {
                 color: #2C2C2C;
@@ -74,9 +76,91 @@ nav {
                 text-transform: uppercase;
 
                 &:hover {
-                    @include btn-svg-hover;
+                    @include btn-svg-a-hover;
                 }
             }
         }
     }
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+main > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    //overflow-x: hidden;
+    //padding-bottom: 20px;
+    height: 800px;
+    font-family: 'Mulish', sans-serif;
+
+    /*
+    @media  screen and (max-width: 900px) {
+        font-size: 14px;
+    }
+    */
+    
+    
+
+    .description-wrapper {
+        
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        
+        text-align: center;
+        max-width: 480px;
+        color: #2C2C2C;
+        //border: 1px solid green;
+
+        a {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 0.2rem;
+            letter-spacing: 10%;
+            @include btn-svg-a-hover;
+        }
+
+
+    }
+
+    text-transform: capitalize;
+    h2 {
+        
+        font-size: 48px;
+        font-style: ExtraBold;
+        line-height: 60px;
+        //color: #2C2C2C;
+    }
+
+    p {
+        font-style: SemiBold;
+        line-height: 29px;
+        font-size: 16px;
+    }
+
+    
+    img {
+        width: 100%;
+    }
+    
+
+ 
+
+}
+
+.classics {
+    border-right: 0.5px solid rgba(0, 0, 0, 0.8);
+    background-color: #EBE8E1;
+}
+
+.specials {
+    background-color: #DADADA;
 }

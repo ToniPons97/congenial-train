@@ -9,6 +9,8 @@ a {
 }
 
 nav {
+  position: fixed;
+  width: 100vw;
   font-family: "Mulish", sans-serif;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.8);
   display: flex;
@@ -69,6 +71,70 @@ nav ul li button:hover:hover {
   cursor: pointer;
   opacity: 0.6;
   transition: 0.3s;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+main > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 800px;
+  font-family: "Mulish", sans-serif;
+  /*
+  @media  screen and (max-width: 900px) {
+      font-size: 14px;
+  }
+  */
+  text-transform: capitalize;
+}
+main > div .description-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  max-width: 480px;
+  color: #2C2C2C;
+}
+main > div .description-wrapper a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.2rem;
+  letter-spacing: 10%;
+}
+main > div .description-wrapper a:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+main > div h2 {
+  font-size: 48px;
+  font-style: ExtraBold;
+  line-height: 60px;
+}
+main > div p {
+  font-style: SemiBold;
+  line-height: 29px;
+  font-size: 16px;
+}
+main > div img {
+  width: 100%;
+}
+
+.classics {
+  border-right: 0.5px solid rgba(0, 0, 0, 0.8);
+  background-color: #EBE8E1;
+}
+
+.specials {
+  background-color: #DADADA;
 }
 
 /*# sourceMappingURL=navbar.css.map */
