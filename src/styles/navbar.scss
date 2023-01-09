@@ -95,8 +95,6 @@ main > div {
     align-items: center;
     justify-content: center;
     width: 50%;
-    //overflow-x: hidden;
-    //padding-bottom: 20px;
     height: 800px;
     font-family: 'Mulish', sans-serif;
 
@@ -112,18 +110,20 @@ main > div {
         
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.8rem;
         
         text-align: center;
-        max-width: 480px;
+        max-width: 420px;
         color: #2C2C2C;
-        //border: 1px solid green;
 
         a {
+            text-transform: uppercase;
+            font-weight: bold;
             display: flex;
             flex-direction: row;
             justify-content: center;
-            gap: 0.2rem;
+            align-items: center;
+            gap: 0.4rem;
             letter-spacing: 10%;
             @include btn-svg-a-hover;
         }
@@ -131,19 +131,18 @@ main > div {
 
     }
 
-    text-transform: capitalize;
     h2 {
+        text-transform: uppercase;
         
         font-size: 48px;
-        font-style: ExtraBold;
+        //font-style: ExtraBold;
         line-height: 60px;
-        //color: #2C2C2C;
     }
 
     p {
         font-style: SemiBold;
         line-height: 29px;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     

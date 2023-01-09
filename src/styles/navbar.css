@@ -92,21 +92,23 @@ main > div {
       font-size: 14px;
   }
   */
-  text-transform: capitalize;
 }
 main > div .description-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.8rem;
   text-align: center;
-  max-width: 480px;
+  max-width: 420px;
   color: #2C2C2C;
 }
 main > div .description-wrapper a {
+  text-transform: uppercase;
+  font-weight: bold;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 0.2rem;
+  align-items: center;
+  gap: 0.4rem;
   letter-spacing: 10%;
 }
 main > div .description-wrapper a:hover {
@@ -115,14 +117,14 @@ main > div .description-wrapper a:hover {
   transition: 0.3s;
 }
 main > div h2 {
+  text-transform: uppercase;
   font-size: 48px;
-  font-style: ExtraBold;
   line-height: 60px;
 }
 main > div p {
   font-style: SemiBold;
   line-height: 29px;
-  font-size: 16px;
+  font-size: 14px;
 }
 main > div img {
   width: 100%;
