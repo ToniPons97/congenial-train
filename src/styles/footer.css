@@ -1,44 +1,67 @@
 footer {
   display: flex;
   flex-direction: row;
-  padding: 50px 0px;
-  justify-content: space-around;
-  gap: 0.2rem;
+  padding: 30px 10px;
+  justify-content: space-evenly;
 }
 
-.footer-left, .footer-right {
+.footer-left {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 500px;
   height: 240px;
+  gap: 2.5rem;
+  padding: 0;
+}
+
+.footer-middle {
+  width: 50%;
 }
 
 .footer-left #join {
-  margin-bottom: 20px;
+  margin: 0 0px 10px 0;
 }
-.footer-left input {
+.footer-left .footer-input {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 440px;
+}
+.footer-left .footer-input input {
   appearance: none;
   border: 1px solid #2C2C2C;
   width: 300px;
-  height: 35px;
+  height: 40px;
   border-radius: 20px;
+  color: #2C2C2C;
+  font-weight: 800;
+  font-size: 14px;
+  padding-left: 10px;
+  z-index: 0;
 }
-.footer-left input::placeholder {
+.footer-left .footer-input input::placeholder {
   font-weight: bold;
   color: #2C2C2C;
   padding-left: 10px;
 }
-.footer-left button {
+.footer-left .footer-input button {
   appearance: none;
   border: 1px solid #2C2C2C;
   background-color: black;
   color: white;
   width: 165px;
-  height: 37px;
+  height: 40px;
   border-radius: 20px;
-  position: relative;
-  right: 65px;
+  position: absolute;
+  right: 10px;
+  z-index: 1;
+}
+.footer-left .footer-input button:hover {
+  cursor: pointer;
+  color: #2C2C2C;
+  background-color: grey;
+  transition: 0.3s;
 }
 .footer-left #footer-trademark {
   font-size: 10px;
@@ -54,12 +77,34 @@ footer {
 }
 
 .footer-right {
-  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: center;
+  height: 215px;
+  gap: 1rem;
   align-items: flex-end;
   font-size: 14px;
 }
+.footer-right ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
 .footer-right ul li {
   list-style: none;
+}
+.footer-right .social-media {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.footer-right .social-media img:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s;
 }
 
 /*# sourceMappingURL=footer.css.map */
