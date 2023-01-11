@@ -111,13 +111,13 @@ nav {
 
 // START OF MAIN SECTION (landing)
 
-main {
+.landing-main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-main > div {
+.landing-main-container {
     display: flex;
     flex-direction: column;
     align-items: center;

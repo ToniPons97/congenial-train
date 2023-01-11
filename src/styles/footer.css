@@ -40,12 +40,12 @@ footer {
   color: #2C2C2C;
   font-weight: 800;
   font-size: 14px;
-  padding-left: 10px;
+  padding-left: 20px;
+  background-color: #F9F9F7;
 }
 .footer-left .footer-input input::placeholder {
   font-weight: bold;
   color: #2C2C2C;
-  padding-left: 10px;
 }
 .footer-left .footer-input button {
   appearance: none;

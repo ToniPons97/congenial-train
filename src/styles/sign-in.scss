@@ -1,0 +1,92 @@
+// SIGN-IN SIGN-UP STYLES
+body {
+    background-color: #F9F9F7;    
+    
+    .sign-in-main {
+        height: 650px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .sign-in-main-container {
+            height: 60%;
+            width: 446px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8rem;
+
+            //border: 1px solid orange;
+
+            h1 {
+                justify-self: flex-start;
+                font-weight: 400;
+                font-size: 28px;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+            }
+            input {
+                appearance: none;
+                border: 2px solid #2C2C2C;
+                font-weight: 800;
+                padding-left: 20px;
+                width: 70%;
+                height: 40px;
+                border-radius: 30px;
+                background-color: #F9F9F7; 
+                
+     
+                
+                
+                &::placeholder {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    color: #2C2C2C;
+                    font-size: 14px;
+                }
+            }
+
+            button {
+                appearance: none;
+                border: 1px solid #2C2C2C;
+                width: 110px;
+                height: 46px;
+                border-radius: 30px;
+                background-color: #2C2C2C;
+                color: #F9F9F7;
+                text-transform: uppercase;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #67645e;
+                    border: 1px solid #67645e;
+                    transition: 0.3s;
+                }
+            }
+
+            a {
+                font-weight: bold;
+                font-size: 12px;
+                letter-spacing: 1px;
+                color: #2C2C2C;
+                text-transform: uppercase;
+
+                &:first-child {
+                    font-size: 20px;
+                }
+
+
+
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                    text-decoration-thickness: 2px;
+                }
+            }
+
+        }
+    }
+}
