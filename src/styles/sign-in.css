@@ -18,7 +18,6 @@ body .sign-in-main .sign-in-main-container {
   gap: 0.8rem;
 }
 body .sign-in-main .sign-in-main-container h1 {
-  justify-self: flex-start;
   font-weight: 400;
   font-size: 28px;
   text-transform: uppercase;
