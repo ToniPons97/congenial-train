@@ -2,7 +2,7 @@ body {
   background-color: #F9F9F7;
 }
 body .sign-in-main {
-  height: 650px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +18,7 @@ body .sign-in-main .sign-in-main-container {
   gap: 0.8rem;
 }
 body .sign-in-main .sign-in-main-container h1 {
-  font-weight: 400;
+  font-weight: 200;
   font-size: 28px;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -48,6 +48,8 @@ body .sign-in-main .sign-in-main-container button {
   background-color: #2C2C2C;
   color: #F9F9F7;
   text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 body .sign-in-main .sign-in-main-container button:hover {
   cursor: pointer;
@@ -61,9 +63,6 @@ body .sign-in-main .sign-in-main-container a {
   letter-spacing: 1px;
   color: #2C2C2C;
   text-transform: uppercase;
-}
-body .sign-in-main .sign-in-main-container a:first-child {
-  font-size: 20px;
 }
 body .sign-in-main .sign-in-main-container a:hover {
   cursor: pointer;

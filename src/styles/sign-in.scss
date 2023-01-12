@@ -3,7 +3,7 @@ body {
     background-color: #F9F9F7;    
     
     .sign-in-main {
-        height: 650px;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -19,7 +19,7 @@ body {
             gap: 0.8rem;
 
             h1 {
-                font-weight: 400;
+                font-weight: 200;
                 font-size: 28px;
                 text-transform: uppercase;
                 margin-bottom: 10px;
@@ -54,6 +54,8 @@ body {
                 background-color: #2C2C2C;
                 color: #F9F9F7;
                 text-transform: uppercase;
+                margin-top: 20px;
+                margin-bottom: 0;
 
                 &:hover {
                     cursor: pointer;
@@ -70,9 +72,6 @@ body {
                 color: #2C2C2C;
                 text-transform: uppercase;
 
-                &:first-child {
-                    font-size: 20px;
-                }
 
 
 
