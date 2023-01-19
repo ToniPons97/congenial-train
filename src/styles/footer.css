@@ -4,6 +4,7 @@ footer {
   padding: 30px 35px;
   justify-content: space-evenly;
   border-top: 0.5px solid #2C2C2C;
+  background-color: #F9F9F7;
 }
 
 .footer-left {
@@ -42,6 +43,10 @@ footer {
   font-size: 14px;
   padding-left: 20px;
   background-color: #F9F9F7;
+  outline: none;
+}
+.footer-left .footer-input input:focus {
+  border-color: #67645e;
 }
 .footer-left .footer-input input::placeholder {
   font-weight: bold;

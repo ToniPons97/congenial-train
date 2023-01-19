@@ -33,6 +33,11 @@ body .sign-in-main .sign-in-main-container input {
   border-radius: 30px;
   background-color: #F9F9F7;
 }
+body .sign-in-main .sign-in-main-container input:focus {
+  outline: none;
+  border-color: #F9F9F7;
+  box-shadow: 0 0 0 2px #67645e;
+}
 body .sign-in-main .sign-in-main-container input::placeholder {
   text-transform: uppercase;
   font-weight: bold;

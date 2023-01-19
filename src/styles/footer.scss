@@ -6,6 +6,7 @@ footer {
     padding: 30px 35px;
     justify-content: space-evenly;
     border-top: 0.5px solid #2C2C2C;
+    background-color: #F9F9F7;
 }
 
 .footer-left {
@@ -54,9 +55,13 @@ footer {
             font-weight: 800;
             font-size: 14px;
             padding-left: 20px;
-            background-color: #F9F9F7;    
+            background-color: #F9F9F7;
+            outline: none;
 
-    
+            &:focus {
+                border-color: #67645e;
+            }
+               
             &::placeholder {
                 font-weight: bold;
                 color: #2C2C2C;
