@@ -92,6 +92,7 @@ nav ul li button:hover:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 120vh;
 }
 
 .landing-main-container {
@@ -100,7 +101,7 @@ nav ul li button:hover:hover {
   align-items: center;
   justify-content: center;
   width: 50%;
-  height: 950px;
+  height: 100%;
   font-family: "Mulish", sans-serif;
   /*
   @media  screen and (max-width: 900px) {
