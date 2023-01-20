@@ -115,6 +115,7 @@ nav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    height: 120vh;
 }
 
 .landing-main-container {
@@ -123,7 +124,9 @@ nav {
     align-items: center;
     justify-content: center;
     width: 50%;
-    height: 950px;
+    //height: 950px;
+    //height: 100vh;
+    height: 100%;
     font-family: 'Mulish', sans-serif;
 
     /*
