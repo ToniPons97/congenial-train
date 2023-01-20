@@ -133,6 +133,13 @@ nav ul li button:hover:hover {
   color: #67645e;
   transition: 0.3s;
 }
+.landing-main-container .description-wrapper a svg {
+  position: relative;
+  transition: transform ease-in 0.5s;
+}
+.landing-main-container .description-wrapper a:hover > svg {
+  transform: translate(8px, 0);
+}
 .landing-main-container h2 {
   text-transform: uppercase;
   font-size: 40px;

@@ -124,8 +124,6 @@ nav {
     align-items: center;
     justify-content: center;
     width: 50%;
-    //height: 950px;
-    //height: 100vh;
     height: 100%;
     font-family: 'Mulish', sans-serif;
 
@@ -157,6 +155,18 @@ nav {
             gap: 0.4rem;
             letter-spacing: 2px;
             @include btn-svg-a-hover;
+            
+            
+            svg {
+                position: relative;
+                transition: transform ease-in 0.5s;
+            }
+            
+            &:hover > svg {
+                transform: translate(8px, 0);
+            }
+            
+
 
         }
 
