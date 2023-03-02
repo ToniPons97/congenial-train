@@ -1,0 +1,98 @@
+// START OF NAVBAR STYLES
+@import '../styles/utilities.scss';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Mulish', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+#logo-dark {
+    width: 160px;
+    align-self: center;
+    
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+
+nav {
+    z-index: 2;
+    position: fixed;
+    width: 100vw;
+    
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    height: 80px;
+    background-color: #F9F9F7;
+
+    ul {
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+        left: 8px;
+        margin-right: 0px;
+    
+        li {
+            @include btn-svg-a-hover;
+            
+            a:visited {
+                color: #2C2C2C;
+            }
+
+            &:first-child {
+                font-size: 16px;
+                font-weight: 800;
+                color: #2C2C2C;
+                letter-spacing: 0.1rem;
+
+            }
+            &:nth-child(2) {
+                margin-left: 20px;
+
+            }
+            &:nth-child(3) {
+                margin-right: 20px;
+            }
+            
+            list-style: none;
+            
+            button {
+                appearance: none;
+                background-color: #F9F9F7;
+                border: 1px solid #2C2C2C;
+                border-radius: 20px;
+                width: 137px;
+                height: 40px;
+                font-weight: bold;
+                font-size: 16px;
+                letter-spacing: 0.1rem;
+                text-transform: uppercase;
+                margin: 0;
+
+                &:hover {
+                    @include btn-svg-a-hover;
+                }
+            }
+        }
+    }
+}
+
+// END OF NAVBAR STYLES
