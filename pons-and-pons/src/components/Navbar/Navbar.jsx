@@ -30,7 +30,7 @@ const Navbar = () => {
                     <a href="">ABOUT US</a>
                 </li>
                 <li>
-                    <Link to='/signin'>
+                    <Link to='/account/signin'>
                         {/* USER SVG */}
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12C14.21 12 16 10.21 16 8C16 5.79 
@@ -57,7 +57,7 @@ const Navbar = () => {
                     </svg>
                 </li>
                 <li>
-                    <button onClick={handleNav} value='/signup'>shop</button>
+                    <button onClick={handleNav} value='/account/signin'>shop</button>
                 </li>
             </ul>
         </nav>
