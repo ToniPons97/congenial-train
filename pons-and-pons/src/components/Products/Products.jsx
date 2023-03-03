@@ -95,7 +95,6 @@ const Products = () => {
     }, [idProdsWithTags]);
 
 
-
     return (
         <main className='product-main'>
             <section className="with-product-main">
