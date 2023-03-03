@@ -13,9 +13,9 @@ const Home = () => {
                 </div>
                 <div className="description-wrapper">
                     <h2>classics</h2>
-                    <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
-
-                    <DiscoverLink text='discover flavours' to='/flavours/sugar' />
+                    {/* <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p> */}
+                    <p>Indulge in the sweet and satisfying taste of our sugar ice creams, available in a variety of delicious flavors.</p>
+                    <DiscoverLink text='discover flavours' to='/flavors/sugar' />
                 </div>
             </div>
             <div className="specials landing-main-container">
@@ -24,8 +24,8 @@ const Home = () => {
                 </div>
                 <div className="description-wrapper">
                     <h2>specials</h2>
-                    <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
-                    
+                    {/* <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p> */}
+                    <p>Satisfy your sweet tooth without the guilt with our delicious range of sugar-free ice creams, available in various flavors.</p>
                     <DiscoverLink text='discover flavors' to='/flavors/sugar-free' />
                 </div>
             </div>

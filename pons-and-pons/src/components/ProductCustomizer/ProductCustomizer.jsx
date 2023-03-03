@@ -1,7 +1,7 @@
 import Select from 'react-select';
 import './ProductCustomizer.scss';
 
-const ProductCustomizer = () => {
+const ProductCustomizer = ({ setTags }) => {
     const subCategories = [
         {label: 'Low calories', value: 'Low calories'},
         {label: 'Medium calories', value: 'Medium calories'},
@@ -13,9 +13,15 @@ const ProductCustomizer = () => {
         {label: 'Lactose free', value: 'Lactose free'}
     ];
 
+    const handleSelection = (ev) => {
+        const selected = ev.map(e => e.value);
+        setTags(prev => selected);
+    }
+
     return (
         <div className='product-customizer-container'>
             <Select
+                onChange={handleSelection}
                 placeholder='customize your product'
                 unstyled
                 closeMenuOnSelect={false}
