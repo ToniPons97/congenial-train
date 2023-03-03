@@ -8,6 +8,7 @@ import sugarUva from '../../assets/images/sugar-uva.png';
 import sugarVainilla from '../../assets/images/sugar-vainilla.png';
 import sugarCaramelo from '../../assets/images/sugar-caramelo.png';
 import { Link } from 'react-router-dom';
+import ProductCustomizer from '../ProductCustomizer/ProductCustomizer';
 
 const SugarGelato = () => {
     return (
@@ -27,8 +28,11 @@ const SugarGelato = () => {
             </section>
             <section className='sugar-products-container'>
                 <div className='products-selector'>
-                    <h3>With Sugar</h3>
-                    <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
+                    <div className='selector-text-wrapper'>
+                        <h3>With Sugar</h3>
+                        <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
+                    </div>
+                    <ProductCustomizer />
                 </div>
                 <div className='products-display'>
                     <div className='sugar-product'>
@@ -56,8 +60,11 @@ const SugarGelato = () => {
                         <Link>caramelo</Link>
                     </div>
                 </div>
-
             </section>
+            <div className='try-other-products'>
+                <h4>prueba nuestros sabores especiales</h4>
+                <a>DISCOVER SPECIALS</a>
+            </div>
         </main>
     );
 }

@@ -14,8 +14,8 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/account/:type' element={<SignUp />} />
         <Route path='/account/:type' element={<SignUp />} />
-        <Route path='/products' element={<SugarGelato></SugarGelato>}>
-          <Route path=':sugar' element={<SugarGelato></SugarGelato>} />
+        <Route path='/products' element={<SugarGelato />}>
+          <Route path=':sugar' element={<SugarGelato />} />
         </Route>
       </Routes>
       <Footer />

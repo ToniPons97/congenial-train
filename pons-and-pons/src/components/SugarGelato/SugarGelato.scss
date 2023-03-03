@@ -1,12 +1,12 @@
 main {
     display: flex;
     flex-direction: column;
+    background-color: #F9F9F7;
 
     .with-sugar-main {
         display: flex;
         height: 79vh;
         padding-top: 80px;
-        background-color: #F9F9F7;
     
         .with-sugar-container {
             display: flex;
@@ -62,7 +62,7 @@ main {
 
     .sugar-products-container {
         height: 120vh;
-        background-color: #F9F9F7;
+        // background-color: #F9F9F7;
         // border: 1px solid red;
 
         display: grid;
@@ -71,9 +71,26 @@ main {
 
 
         .products-selector {
-            border: 1px solid green;
-            h3 {
-                font-size: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            // border: 1px solid green;
+            gap: 3rem;
+
+            .selector-text-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                h3 {
+                    font-size: 40px;
+                    flex: 0.2;
+                }
+    
+                p {
+                    font-size: 18px;
+                    line-height: 28px;
+                }
             }
 
             width: 340px;
@@ -84,6 +101,7 @@ main {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             justify-items: center;
+            gap: 1rem;
 
             .sugar-product {
                 display: flex;
@@ -115,4 +133,24 @@ main {
             }
         }
     }
+    .try-other-products {
+        // border: 1px solid green;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        // height: 300px;
+        // background-color: #F9F9F7;
+
+        h4 {
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+    }
+
+    padding-bottom: 50px;
 }
