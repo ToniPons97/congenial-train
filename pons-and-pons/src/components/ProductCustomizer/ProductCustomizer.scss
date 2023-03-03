@@ -1,0 +1,26 @@
+.product-customizer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid black;
+
+    P {
+        flex: 1;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 12px;
+        letter-spacing: 0.1rem;
+    }
+
+    svg {
+        position: relative;
+        top: 3px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.3s;
+    }
+}

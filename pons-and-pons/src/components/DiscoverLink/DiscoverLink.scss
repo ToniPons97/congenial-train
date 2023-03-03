@@ -1,0 +1,28 @@
+@import '../styles/utilities.scss';
+
+a {
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    letter-spacing: 2px;
+    color: #2C2C2C;
+
+    @include btn-svg-a-hover;
+    
+    svg {
+        position: relative;
+        transition: transform ease-in 0.5s;
+    }
+    
+    &:hover > svg {
+        transform: translate(8px, 0);
+    }
+
+    &:visited {
+        color: #2C2C2C;
+    }
+}
