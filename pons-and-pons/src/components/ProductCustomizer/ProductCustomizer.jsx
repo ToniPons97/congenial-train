@@ -1,12 +1,82 @@
+import Select from 'react-select';
 import './ProductCustomizer.scss';
 
+
+
 const ProductCustomizer = () => {
+    const subCategories = [
+        {label: 'Low calories', value: 'Low calories'},
+        {label: 'Medium calories', value: 'Medium calories'},
+        {label: 'Low IG', value: 'Low IG'},
+        {label: 'Medium IG', value: 'Medium IG'},
+        {label: 'Proteic', value: 'Proteic'},
+        {label: 'Dairy', value: 'Dairy'},
+        {label: 'Non dairy', value: 'Non dairy'},
+        {label: 'Lactose free', value: 'Lactose free'}
+    ];
+
     return (
         <div className='product-customizer-container'>
-            <p>customize your product</p>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.8751 9.00001L11.9951 12.88L8.1151 9.00001C7.92827 8.81275 7.67462 8.70752 7.4101 8.70752C7.14558 8.70752 6.89193 8.81275 6.7051 9.00001C6.3151 9.39001 6.3151 10.02 6.7051 10.41L11.2951 15C11.6851 15.39 12.3151 15.39 12.7051 15L17.2951 10.41C17.6851 10.02 17.6851 9.39001 17.2951 9.00001C16.9051 8.62001 16.2651 8.61001 15.8751 9.00001Z" fill="#2C2C2C" />
-            </svg>
+            <Select
+                placeholder='customize your product'
+                unstyled
+                closeMenuOnSelect={false}
+                styles={{
+                    control: baseStyles => ({
+                        ...baseStyles,
+                        '&:hover': {
+                            opacity: 0.6
+                        }
+                    }),
+                    container: (baseStyles, state) => ({
+                        ...baseStyles,
+                        width: 'inherit',                        
+                    }),
+                    option: (baseStyles, state) => ({
+                        ...baseStyles,
+                        borderBottom: '1px solid black',
+                        padding: 10,
+                        paddingLeft: 0,
+                        '&:hover': {
+                            opacity: 0.6,
+                            cursor: 'pointer'
+                        }
+                    }),
+                    multiValue: (baseStyles, state) => ({
+                        ...baseStyles,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        padding: '3px',
+                        paddingLeft: '5px',
+                        paddingRight: '5px',
+                        margin: '2px',
+                        border: '1px solid rgba(0, 0, 0, 0.4)',
+                        borderRadius: '10px',
+                        '&:hover': {
+                            opacity: 0.6,
+                            cursor: 'pointer',
+                            transition: 'opacity 0.3s'
+                        },
+                    }),
+                    multiValueRemove: (baseStyles, state) => ({
+                        ...baseStyles,
+                        position: 'relative',
+                        bottom: '2.5px',
+                        marginLeft: '3px'
+                    }),
+                    dropdownIndicator: (baseStyles, state) => ({
+                        ...baseStyles,
+                        transition: 'transform .2s ease',
+                        transform: state.selectProps.menuIsOpen ? 'rotate(-180deg)' : null
+                    }),
+                }}
+
+                options={subCategories} 
+                isMulti
+            />
         </div>
     );
 }

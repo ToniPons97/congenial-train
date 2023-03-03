@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const DiscoverLink = ({ text = 'discover', to = '/products' }) => {
     return (
-        <Link to={to}>
+        <Link className='discover-link' to={to}>
             {text}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.20874 13.0002H16.3787L11.4987 17.8802C11.1087 18.2702 11.1087 18.9102 11.4987 19.3002C11.8887 19.6902 12.5187 19.6902 
