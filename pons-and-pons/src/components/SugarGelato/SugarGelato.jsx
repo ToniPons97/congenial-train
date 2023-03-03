@@ -13,7 +13,7 @@ import DiscoverLink from '../DiscoverLink/DiscoverLink';
 
 const SugarGelato = () => {
     return (
-        <main>
+        <main className='product-main'>
             <section className="with-sugar-main">
                 <div className='with-sugar-container'>
                     <div className="category-description">
