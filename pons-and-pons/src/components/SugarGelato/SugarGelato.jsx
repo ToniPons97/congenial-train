@@ -9,6 +9,7 @@ import sugarVainilla from '../../assets/images/sugar-vainilla.png';
 import sugarCaramelo from '../../assets/images/sugar-caramelo.png';
 import { Link } from 'react-router-dom';
 import ProductCustomizer from '../ProductCustomizer/ProductCustomizer';
+import DiscoverLink from '../DiscoverLink/DiscoverLink';
 
 const SugarGelato = () => {
     return (
@@ -63,7 +64,7 @@ const SugarGelato = () => {
             </section>
             <div className='try-other-products'>
                 <h4>prueba nuestros sabores especiales</h4>
-                <a>DISCOVER SPECIALS</a>
+                <DiscoverLink text='discover specials' to='/products/sugar-free' />
             </div>
         </main>
     );
