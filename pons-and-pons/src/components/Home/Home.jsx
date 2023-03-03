@@ -15,7 +15,7 @@ const Home = () => {
                     <h2>classics</h2>
                     <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
 
-                    <DiscoverLink text='discover flavors' to='/products/sugar' />
+                    <DiscoverLink text='discover flavours' to='/flavours/sugar' />
                 </div>
             </div>
             <div className="specials landing-main-container">
@@ -26,7 +26,7 @@ const Home = () => {
                     <h2>specials</h2>
                     <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
                     
-                    <DiscoverLink text='discover flavors' to='/products/sugar-free' />
+                    <DiscoverLink text='discover flavors' to='/flavors/sugar-free' />
                 </div>
             </div>
         </main>

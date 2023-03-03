@@ -1,8 +1,6 @@
 import Select from 'react-select';
 import './ProductCustomizer.scss';
 
-
-
 const ProductCustomizer = () => {
     const subCategories = [
         {label: 'Low calories', value: 'Low calories'},
