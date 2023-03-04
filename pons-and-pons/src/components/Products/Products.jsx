@@ -70,7 +70,8 @@ const Products = () => {
 
     const findProductsWithTags = () => {
         if (tags.length) {
-            let filteredProducts = products.filter(p => tags.every(f => p.tags.includes(f)));
+            const prodsFromStorage = JSON.parse(localStorage.getItem('products'));
+            let filteredProducts = prodsFromStorage.filter(p => tags.every(f => p.tags.includes(f)));
             setProducts(prev => filteredProducts);
         } else {
             // console.log('Tags is empty');
@@ -81,6 +82,7 @@ const Products = () => {
 
     useEffect(() => {
         findProductsWithTags();
+        console.log(tags);
     }, [tags]);
 
 
