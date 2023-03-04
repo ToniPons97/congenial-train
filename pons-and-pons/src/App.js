@@ -15,9 +15,12 @@ function App() {
         <Route path='/account/:type' element={<SignUp />} />
         <Route path='/account/:type' element={<SignUp />} />
         <Route path='/flavors' element={<Products />}>
-          <Route path='sugar' element={<Products />} />
-          <Route path='sugar-free' element={<Products />} />
-          <Route path=':flavor' element={<></>} />
+          <Route path='sugar' element={<Products />}>
+            <Route path=':flavor' element={<></>} />
+          </Route>
+          <Route path='sugar-free' element={<Products />}>
+            <Route path=":flavor" element={<Products />} />
+          </Route>
         </Route>
       </Routes>
       <Footer />

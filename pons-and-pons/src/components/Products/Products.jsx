@@ -4,8 +4,12 @@ import ProductCustomizer from '../ProductCustomizer/ProductCustomizer';
 import DiscoverLink from '../DiscoverLink/DiscoverLink';
 import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
+import { useLocation } from 'react-router-dom';
 
 const Products = () => {
+    const location = useLocation();
+    const currentSubroute = location.pathname.slice(location.pathname.lastIndexOf('/'), location.pathname.length);
+
     const [ products, setProducts ] = useState([
         {
             id: 1, 
@@ -58,41 +62,26 @@ const Products = () => {
 
 
     const [ tags, setTags ] = useState([]);
-    const [ idProdsWithTags, setIdProdsWithTags ] = useState(() => new Set());
     
     useEffect(() => {
         window.scrollTo(0, 0);
+        localStorage.setItem('products', JSON.stringify(products));
     }, []);
 
     const findProductsWithTags = () => {
-        return products.filter(p => p.tags.forEach(pTag => {
-            for (let t of tags) {
-                console.log(`${t} === ${pTag}`);
-                if (pTag === t)
-                    setIdProdsWithTags(prev => new Set(prev).add(p.id));
-                
-            }
-        }));
+        if (tags.length) {
+            let filteredProducts = products.filter(p => tags.every(f => p.tags.includes(f)));
+            setProducts(prev => filteredProducts);
+        } else {
+            // console.log('Tags is empty');
+            const prodsFromStorage = JSON.parse(localStorage.getItem('products'));
+            setProducts(prev => prodsFromStorage);
+        }
     }
 
     useEffect(() => {
         findProductsWithTags();
     }, [tags]);
-
-
-    let commonProducts = [];
-    useEffect(() => {
-        if (idProdsWithTags.size > 0) {
-            for (let id of idProdsWithTags) {
-                setProducts(prev => products.filter(p => p.id === id));
-                commonProducts.push(products.filter(p => p.id === id));
-            }
-            
-            console.log(commonProducts);
-            // idProdsWithTags.forEach(id => setProducts(prev => products.filter(p => p.id === id)));
-
-        }
-    }, [idProdsWithTags]);
 
 
     return (
@@ -102,7 +91,6 @@ const Products = () => {
                     <div className="category-description">
                         <div className='category-text-wrapper'>
                             <h2>with sugar</h2>
-                            {/* <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. </p> */}
                             <p>
                                 Sweeten up your day with our sugar ice creams, available in a range of delicious flavors. Perfect for satisfying your sweet tooth cravings.                            
                             </p>
@@ -117,14 +105,13 @@ const Products = () => {
                 <div className='products-selector'>
                     <div className='selector-text-wrapper'>
                         <h3>With Sugar</h3>
-                        {/* <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p> */}
                         <p>each scoop is a sweet and creamy treat that will leave you wanting more.</p>
                     </div>
                     <ProductCustomizer setTags={setTags} />
                 </div>
                 <div className='products-display'>
                     {
-                        products.map(p => (<Product key={p.id} name={p.name} imageName={p.imageName} />))
+                        products.map(p => (<Product key={p.id} name={p.name} imageName={p.imageName} subroute={currentSubroute} />))
                     }
                 </div>
             </section>
