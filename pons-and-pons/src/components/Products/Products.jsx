@@ -4,7 +4,7 @@ import ProductCustomizer from '../ProductCustomizer/ProductCustomizer';
 import DiscoverLink from '../DiscoverLink/DiscoverLink';
 import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const Products = () => {
     const location = useLocation();
@@ -74,7 +74,6 @@ const Products = () => {
             let filteredProducts = prodsFromStorage.filter(p => tags.every(f => p.tags.includes(f)));
             setProducts(prev => filteredProducts);
         } else {
-            // console.log('Tags is empty');
             const prodsFromStorage = JSON.parse(localStorage.getItem('products'));
             setProducts(prev => prodsFromStorage);
         }
@@ -82,7 +81,7 @@ const Products = () => {
 
     useEffect(() => {
         findProductsWithTags();
-        console.log(tags);
+        // console.log(tags);
     }, [tags]);
 
 

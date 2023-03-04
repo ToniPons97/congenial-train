@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import SignUp from "./components/SignUp/SignUp";
 import Products from "./components/Products/Products";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 function App() {
   return (
@@ -16,12 +17,14 @@ function App() {
         <Route path='/account/:type' element={<SignUp />} />
         <Route path='/flavors' element={<Products />}>
           <Route path='sugar' element={<Products />}>
-            <Route path=':flavor' element={<></>} />
           </Route>
-          <Route path='sugar-free' element={<Products />}>
+          {/* <Route path='sugar-free' element={<Products />}>
             <Route path=":flavor" element={<Products />} />
-          </Route>
+          </Route> */}
         </Route>
+        <Route path='/flavors/sugar/:flavor' element={<ProductDetails />} />
+        <Route path='/flavors/sugar-free/:flavor' element={<ProductDetails />} />
+
       </Routes>
       <Footer />
     </>
