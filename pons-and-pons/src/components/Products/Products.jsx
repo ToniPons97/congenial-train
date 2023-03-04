@@ -118,7 +118,7 @@ const Products = () => {
             </section>
             <div className='try-other-products'>
                 <h4>try our special flavors</h4>
-                <DiscoverLink text='discover specials' to='/products/sugar-free' />
+                <DiscoverLink text='discover specials' to='/flavors/sugar-free' />
             </div>
         </main>
     );
