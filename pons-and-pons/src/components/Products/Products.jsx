@@ -4,7 +4,7 @@ import ProductCustomizer from '../ProductCustomizer/ProductCustomizer';
 import DiscoverLink from '../DiscoverLink/DiscoverLink';
 import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Products = () => {
     const location = useLocation();
