@@ -113,6 +113,7 @@ const Products = () => {
                     {
                         products.map(p => (<Product key={p.id} name={p.name} imageName={p.imageName} subroute={currentSubroute} />))
                     }
+                    {!products.length && <p>0 products match this description.</p>}
                 </div>
             </section>
             <div className='try-other-products'>
