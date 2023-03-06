@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+
 
 const createData = (name, perServe, per100g) => {
   return { name, perServe, per100g };
@@ -28,14 +28,14 @@ const rows = [
 
 const NutritionFactsTable = () => {
     return (
-        <TableContainer style={{ width: '100%', height: '200px', marginBottom: 10 }} component={Paper}>
+        <TableContainer style={{ width: '100%', height: '200px', marginBottom: 10 }}>
         <Table stickyHeader  size='small' aria-label='Nutrition facts table.'>
-        <caption>SERVINGS PER PACK: 5 sERVING SIZE: 60G / 95ML.</caption>
+        <caption>servings per pack: 5 serving size: 60G / 95ML.</caption>
           <TableHead>
             <TableRow>
-              <TableCell></TableCell>
-              <TableCell align="right">Per serve</TableCell>
-              <TableCell align="right">Per 100&nbsp;g</TableCell>
+              <TableCell style={{backgroundColor: '#F9F9F7'}}></TableCell>
+              <TableCell style={{backgroundColor: '#F9F9F7'}} align="right">Per serve</TableCell>
+              <TableCell style={{backgroundColor: '#F9F9F7'}} align="right">Per 100&nbsp;g</TableCell>
             </TableRow>
           </TableHead>
         <TableBody>
