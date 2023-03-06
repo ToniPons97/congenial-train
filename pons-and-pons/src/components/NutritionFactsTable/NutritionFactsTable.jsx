@@ -28,8 +28,9 @@ const rows = [
 
 const NutritionFactsTable = () => {
     return (
-        <TableContainer component={Paper}>
-        <Table sx={{ width: '100%', height: '80%' }} size='small' aria-label='Nutrition facts table.'>
+        <TableContainer style={{ width: '100%', height: '200px', marginBottom: 10 }} component={Paper}>
+        <Table stickyHeader  size='small' aria-label='Nutrition facts table.'>
+        <caption>SERVINGS PER PACK: 5 sERVING SIZE: 60G / 95ML.</caption>
           <TableHead>
             <TableRow>
               <TableCell></TableCell>
