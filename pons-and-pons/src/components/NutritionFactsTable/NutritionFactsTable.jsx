@@ -56,5 +56,4 @@ const NutritionFactsTable = () => {
       </TableContainer>
     );
 }
-
 export default NutritionFactsTable;
