@@ -16,7 +16,7 @@ export const useClickRippleAnim = (el, config) => {
             const { style } = el.current;
 
             //Half the size of --effectWidt and --effectHeight;
-            const sizeOffset = 50;
+            const sizeOffset = size / 2;
 
             // console.log(offsetX - sizeOffset, offsetY - sizeOffset);
 
