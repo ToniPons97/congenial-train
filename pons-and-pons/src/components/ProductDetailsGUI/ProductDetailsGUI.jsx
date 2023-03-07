@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import NutritionFactsTable from '../NutritionFactsTable/NutritionFactsTable';
+import RippleButton from '../RippleButton/RippleButton';
 import './ProductDetailsGUI.scss';
 
 const ProductDetailsGUI = () => {
     const [selectedTab, setSelectedTab] = useState('flavor');
+    const [quantity, setQuantity] = useState(1);
+    const [totalPrice, setTotalPrice] = useState(29);
 
     const gelatoData = {
         flavor: <p>
@@ -43,8 +46,22 @@ const ProductDetailsGUI = () => {
         }
     }
 
+    const handleQuantity = (ev) => {
+        if (ev.target.textContent === '-' && quantity > 1)
+            setQuantity(prev => prev - 1);
+        else if (ev.target.textContent === '+')
+            setQuantity(prev => prev + 1);
+    }
 
-    
+    const prices = {
+        small: 29,
+        medium: 39,
+        large: 40
+    }
+
+    const handleSizeSelection = (ev) => {
+        setTotalPrice(prev => prices[ev.target.value]);
+    }
 
     return (
         <div className='product-data-container'>
@@ -65,7 +82,7 @@ const ProductDetailsGUI = () => {
                 { gelatoData[selectedTab] }
                 <div className='product-size'>
                     <h4>size</h4>
-                    <fieldset>
+                    <fieldset onChange={handleSizeSelection}>
                         <div>
                             <input id='small' type='radio' name='size' value='small' />
                             <label htmlFor='small'>250 ml - $29.00</label>
@@ -84,15 +101,15 @@ const ProductDetailsGUI = () => {
                     <h4>quantity</h4>
 
                     <div className='product-quantity-selector'>
-                        <div role='button'>-</div>
-                        <p className='quantity-display'>1</p>
-                        <div role='button'>+</div>
+                        <div onClick={handleQuantity} role='button'>-</div>
+                        <p className='quantity-display'>{quantity}</p>
+                        <div onClick={handleQuantity} role='button'>+</div>
                     </div>
                 </div>
             </div>
             <div className='product-total-price'>
-                <h5>total: $29.00</h5>
-                <button>add to cart</button>
+                <h5>total: ${totalPrice * quantity}</h5>
+                <RippleButton>add to cart</RippleButton>
             </div>
         </div>
     );
