@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import NutritionFactsTable from '../NutritionFactsTable/NutritionFactsTable';
+import RippleButton from '../RippleButton/RippleButton';
 import './ProductDetailsGUI.scss';
 
 const ProductDetailsGUI = () => {
@@ -42,9 +43,6 @@ const ProductDetailsGUI = () => {
             setSelectedTab(prev => text);
         }
     }
-
-
-    
 
     return (
         <div className='product-data-container'>
@@ -92,7 +90,7 @@ const ProductDetailsGUI = () => {
             </div>
             <div className='product-total-price'>
                 <h5>total: $29.00</h5>
-                <button>add to cart</button>
+                <RippleButton>add to cart</RippleButton>
             </div>
         </div>
     );
