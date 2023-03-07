@@ -109,11 +109,10 @@
                 border: 1px solid grey;
                 padding: 0 10px;
                 margin-bottom: 20px;
-
                 width: 75px;
                 height: 30px;
-
                 border-radius: 25px;
+                user-select: none;
 
                 div[role=button] {
                     display: flex;
