@@ -37,9 +37,12 @@ export const useClickRippleAnim = (el, config) => {
         applyContainerProperty();
 
         el.current.addEventListener('mouseup', onClick);
-
         return () => {
-            el.current.removeEventListener('mouseup', onClick);
+            try {
+                el.current.removeEventListener('mouseup', onClick);
+            } catch(e) {
+                // console.error(e);
+            }
         }
-    }, [color, duration, el, size]);
+    }, [color, duration, el.current, size]);
 }
