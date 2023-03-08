@@ -5,67 +5,32 @@ import DiscoverLink from '../DiscoverLink/DiscoverLink';
 import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import { useLocation } from 'react-router-dom';
+import { useFetchProducts } from '../../Custom Hooks/useFetchProducts';
 
 const Products = () => {
     const location = useLocation();
     const currentSubroute = location.pathname.slice(location.pathname.lastIndexOf('/'), location.pathname.length);
 
-    const [ products, setProducts ] = useState([
-        {
-            id: 1, 
-            name: 'chocolate', 
-            imageName: 'sugar-chocolate.png', 
-            description: 'Whether enjoyed on its own or paired with your favorite toppings, our chocolate ice cream is a timeless classic that is sure to please any chocolate lover. So treat yourself to a scoop (or two!) of our delicious chocolate ice cream, and savor the indulgence.', 
-            category: 'sugar',
-            tags: ['Low IG', 'Proteic']
-        },
-        {
-            id: 2, 
-            name: 'cafe', 
-            imageName: 'sugar-cafe.png', 
-            description: 'Wake up your taste buds with the bold and delicious flavor of our coffee ice cream. Made with premium coffee beans and the finest quality dairy cream, each spoonful is a heavenly blend of rich coffee flavor and creamy goodness.',
-            category: 'sugar',
-            tags: ['Low IG']
-        },
-        {
-            id: 3, 
-            name: 'pistacho', 
-            imageName: 'sugar-pistacho.png',
-            description: 'Treat yourself to the rich and nutty flavor of our pistachio ice cream. Made with real pistachio nuts and the finest quality dairy cream, each scoop is a delightful combination of smooth and creamy texture with a satisfying crunch of pistachio bits.',
-            category: 'sugar',
-            tags: ['Dairy', 'Medium IG']
-        },
-        {
-            id: 4, 
-            name: 'uva', 
-            imageName: 'sugar-uva.png',
-            description: 'Whether enjoyed as a refreshing treat on a hot summer day or as a unique and flavorful addition to your dessert platter, our grape ice cream is a must-try. So take a scoop and enjoy the luscious and refreshing taste of our grape ice cream today.',
-            category: 'sugar',
-            tags: ['Low calories', 'Non dairy']
-        },
-        {
-            id: 5, name: 'vainilla', 
-            imageName: 'sugar-vainilla.png', 
-            description: 'Indulge in the timeless and classic taste of our vanilla ice cream. Made with the finest quality Madagascar vanilla beans and fresh dairy cream, each scoop is a heavenly blend of smooth, creamy texture and rich, sweet vanilla flavor.',            
-            category: 'sugar',
-            tags: ['Proteic']
-        },
-        {
-            id: 6, 
-            name: 'caramelo', 
-            imageName: 'sugar-caramelo.png',             
-            description: 'Whether enjoyed on its own or as a delicious addition to your favorite desserts, our caramel ice cream is a treat that you won\'t be able to resist. So go ahead, indulge in the rich and buttery taste of our caramel ice cream, and satisfy your cravings today.',            
-            category: 'sugar',
-            tags: ['Lactose free']
-        },
-    ]);
+    const [ products, setProducts ] = useState([]);
 
+    const fetchProducts = async (category) => {
+        if (category === '/sugar' || category === '/sugar-free') {
+            const apiBaseUrl = `http://localhost:5000/api/products${category}`;
+            const response = await fetch(apiBaseUrl);
+            const products = await response.json();
+            setProducts(products);
+            localStorage.setItem('products', JSON.stringify(products));
+        }
+    }
+
+    useEffect(() => {
+        fetchProducts(currentSubroute);
+    }, []);
 
     const [ tags, setTags ] = useState([]);
     
     useEffect(() => {
         window.scrollTo(0, 0);
-        localStorage.setItem('products', JSON.stringify(products));
     }, []);
 
     const findProductsWithTags = () => {
@@ -75,6 +40,7 @@ const Products = () => {
             setProducts(prev => filteredProducts);
         } else {
             const prodsFromStorage = JSON.parse(localStorage.getItem('products'));
+            console.log(prodsFromStorage);
             setProducts(prev => prodsFromStorage);
         }
     }
