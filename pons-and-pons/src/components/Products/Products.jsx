@@ -5,7 +5,6 @@ import DiscoverLink from '../DiscoverLink/DiscoverLink';
 import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import { useLocation } from 'react-router-dom';
-import { useFetchProducts } from '../../Custom Hooks/useFetchProducts';
 
 const Products = () => {
     const location = useLocation();
@@ -40,16 +39,13 @@ const Products = () => {
             setProducts(prev => filteredProducts);
         } else {
             const prodsFromStorage = JSON.parse(localStorage.getItem('products'));
-            console.log(prodsFromStorage);
             setProducts(prev => prodsFromStorage);
         }
     }
 
     useEffect(() => {
         findProductsWithTags();
-        // console.log(tags);
     }, [tags]);
-
 
     return (
         <main className='product-main'>
