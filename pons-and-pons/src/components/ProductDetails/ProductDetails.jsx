@@ -2,10 +2,16 @@ import './ProductDetails.scss';
 
 import { useEffect, useState } from 'react';
 import ProductDetailsGUI from '../ProductDetailsGUI/ProductDetailsGUI';
+import { useLocation } from 'react-router-dom';
 
 const ProductDetails = ({ productData = '' }) => {
     const productImagesSrc = ['slider-photo-example-1.png', 'slider-photo-example-2.png'];
     const [selectedImage, setSelectedImage] = useState(0);
+
+    const location = useLocation();
+    const currentCategory = location.pathname.split('/')[2];
+
+    console.log(currentCategory);
 
     const handleSliderClick = (ev) => {
         const clickedElement = ev.target.tagName === 'svg' ? ev.target.parentNode
