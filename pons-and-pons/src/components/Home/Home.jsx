@@ -1,10 +1,16 @@
 import './Home.scss';
+import { useEffect } from 'react';
 
 import classicGelato from '../../assets/images/Helado1-classic.png';
 import specialGelato from '../../assets/images/Helado2-special.png';
 import DiscoverLink from '../DiscoverLink/DiscoverLink';
 
+
 const Home = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
     return (
         <main className="landing-main">
             <div className="classics landing-main-container">
