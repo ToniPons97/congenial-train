@@ -3,17 +3,13 @@ import NutritionFactsTable from '../NutritionFactsTable/NutritionFactsTable';
 import RippleButton from '../RippleButton/RippleButton';
 import './ProductDetailsGUI.scss';
 
-const ProductDetailsGUI = () => {
+const ProductDetailsGUI = ({ productData }) => {
     const [selectedTab, setSelectedTab] = useState('flavor');
     const [quantity, setQuantity] = useState(1);
     const [totalPrice, setTotalPrice] = useState(29);
 
     const gelatoData = {
-        flavor: <p>
-                    Whether enjoyed on its own or paired with your favorite toppings, 
-                    treat yourself to a scoop (or two!) of our delicious chocolate ice cream, 
-                    and savor the indulgence.
-                </p>,
+        flavor: <p>{productData.description}</p>,
         ingredients: <p>
                             Water, coconut cream, xylitol, chocolate ripple (10.3%) (water, polydextrose, glycerine, inulin, 
                             cacao powder (7%), modified corn starch, xanthan gum, natural flavour, lactic acid, salt, steviol glycoside),
@@ -72,8 +68,8 @@ const ProductDetailsGUI = () => {
             </div>
             { selectedTab === 'flavor' ? (
                 <>
-                    <h3>chocolate</h3>
-                    <p>Low IG. Proteic</p>
+                    <h3>{productData.name}</h3>
+                    <p>{productData.tags}</p>
                 </>
                 ) : ''
             }

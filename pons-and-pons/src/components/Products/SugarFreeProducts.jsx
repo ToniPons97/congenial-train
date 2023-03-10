@@ -5,6 +5,7 @@ import DiscoverLink from '../DiscoverLink/DiscoverLink';
 import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import { useLocation } from 'react-router-dom';
+import useImagesContext from '../../Custom Hooks/useImagesContext';
 
 const SugarFreeProducts = () => {
     const location = useLocation();
@@ -24,7 +25,6 @@ const SugarFreeProducts = () => {
 
     useEffect(() => {
         fetchProducts(currentSubroute);
-        console.log(currentSubroute);
     }, []);
 
     const [ tags, setTags ] = useState([]);
@@ -48,22 +48,8 @@ const SugarFreeProducts = () => {
         findProductsWithTags();
     }, [tags]);
 
-
-
-    function importAll(r) {
-        let images = {};
-        r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-        // console.log(images['sugar-free/sugar-free-salted-caramel.png']);
-        console.log(images);
-        return images;
-    }
-
-
+    const { importAll } = useImagesContext();
     const imagesSF = importAll(require.context(`../../assets/images/products/sugar-free`, false, /\.png$/));
-
-
-    const cleanSubroute = currentSubroute.slice(1, currentSubroute.length);
-    console.log('this is sugar free');
 
     return (
         <main className='product-main'>

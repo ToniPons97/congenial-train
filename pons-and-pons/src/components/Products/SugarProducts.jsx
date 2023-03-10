@@ -5,12 +5,20 @@ import DiscoverLink from '../DiscoverLink/DiscoverLink';
 import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import { useLocation } from 'react-router-dom';
+import useImagesContext from '../../Custom Hooks/useImagesContext';
 
 const SugarProducts = () => {
+    const [ products, setProducts ] = useState([]);
+    const [ tags, setTags ] = useState([]);
+    
     const location = useLocation();
     const currentSubroute = location.pathname.slice(location.pathname.lastIndexOf('/'), location.pathname.length);
 
-    const [ products, setProducts ] = useState([]);
+    const category = currentSubroute.slice(1, currentSubroute.length);
+    console.log(category);
+
+
+
 
     const fetchProducts = async (category) => {
         if (category === '/sugar' || category === '/sugar-free') {
@@ -24,10 +32,8 @@ const SugarProducts = () => {
 
     useEffect(() => {
         fetchProducts(currentSubroute);
-        console.log(currentSubroute);
     }, []);
 
-    const [ tags, setTags ] = useState([]);
     
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -50,17 +56,10 @@ const SugarProducts = () => {
 
 
 
-    function importAll(r) {
-        let images = {};
-        r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-        // console.log(images['sugar-free/sugar-free-salted-caramel.png']);
-        return images;
-    }
-
+    const { importAll } = useImagesContext();
     let images = importAll(require.context(`../../assets/images/products/sugar`, false, /\.png$/));
 
 
-    const cleanSubroute = currentSubroute.slice(1, currentSubroute.length);
 
     return (
         <main className='product-main'>

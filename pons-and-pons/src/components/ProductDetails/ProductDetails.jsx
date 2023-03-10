@@ -1,17 +1,40 @@
 import './ProductDetails.scss';
 
-import { useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import ProductDetailsGUI from '../ProductDetailsGUI/ProductDetailsGUI';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
-const ProductDetails = ({ productData = '' }) => {
+const ProductDetails = () => {
     const productImagesSrc = ['slider-photo-example-1.png', 'slider-photo-example-2.png'];
     const [selectedImage, setSelectedImage] = useState(0);
 
     const location = useLocation();
-    const currentCategory = location.pathname.split('/')[2];
+    const categoryName = location.pathname.split('/')[2];
 
-    console.log(currentCategory);
+    const { flavor } = useParams();
+    console.log(categoryName, flavor);
+
+
+
+    const fetchProductByName = async () => {
+        const url = `http://localhost:5000/api/products/${categoryName}/${flavor}`;
+        const response = await fetch(url);
+        const json = await response.json();
+        setProductData(json);
+    }
+
+    
+
+    const [ productData, setProductData ] = useState(null);
+
+    
+
+    useEffect(() => {
+        fetchProductByName();
+    }, []);
+
+
+
 
     const handleSliderClick = (ev) => {
         const clickedElement = ev.target.tagName === 'svg' ? ev.target.parentNode
@@ -52,11 +75,13 @@ const ProductDetails = ({ productData = '' }) => {
                     />
                 </div>
                 <div className="product-details-data">
-                    <ProductDetailsGUI />
+                    {
+                        productData &&
+                        <ProductDetailsGUI productData={productData} />
+                    }
                 </div>
             </div>
         </main>
     );
 }
-
 export default ProductDetails;
