@@ -80,9 +80,9 @@ const SugarFreeProducts = () => {
                 </div>
                 <div className='products-display'>
                     {
-                        products.map(p => 
+                        products.map((p, i) => 
                             (<Product 
-                                key={p.id} 
+                                key={i} 
                                 name={p.name} 
                                 image={imagesSF[p.image]} 
                                 subroute={currentSubroute}     

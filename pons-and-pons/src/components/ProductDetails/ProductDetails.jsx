@@ -3,17 +3,20 @@ import './ProductDetails.scss';
 import { createRef, useEffect, useState } from 'react';
 import ProductDetailsGUI from '../ProductDetailsGUI/ProductDetailsGUI';
 import { useLocation, useParams } from 'react-router-dom';
+import useImagesContext from '../../Custom Hooks/useImagesContext';
 
 const ProductDetails = () => {
-    const productImagesSrc = ['slider-photo-example-1.png', 'slider-photo-example-2.png'];
-    const [selectedImage, setSelectedImage] = useState(0);
-
+    
     const location = useLocation();
     const categoryName = location.pathname.split('/')[2];
-
+    
     const { flavor } = useParams();
-    console.log(categoryName, flavor);
+    // console.log(categoryName, flavor);
 
+    const { importAll } = useImagesContext();
+    const sliderImages = importAll(require.context(`../../assets/images/slider-product/`, false));
+    
+    const [selectedImage, setSelectedImage] = useState(0);
 
 
     const fetchProductByName = async () => {
@@ -21,17 +24,34 @@ const ProductDetails = () => {
         const response = await fetch(url);
         const json = await response.json();
         setProductData(json);
+        // setProductSliderImgs(productData.slider_images.split(',').map(el => el.trim()));
+
     }
 
     
 
     const [ productData, setProductData ] = useState(null);
-
+    const [productSliderImgs, setProductSliderImgs] = useState([]);
     
 
     useEffect(() => {
         fetchProductByName();
+        // setProductSliderImgs(productData.slider_images.split(',').map(el => el.trim()));
     }, []);
+
+    useEffect(() => {
+        if (productData)
+            console.log(productSliderImgs);
+        // setProductSliderImgs(productData.slider_images.split(',').map(el => el.trim()));
+
+    }, [])
+
+    useEffect(() => {
+        if (productData)
+            setProductSliderImgs(productData.slider_images.split(',').map(el => el.trim()));
+
+    }, [productData]);
+
 
 
 
@@ -42,9 +62,9 @@ const ProductDetails = () => {
                 : ev.target;
 
         if (clickedElement.classList[0] === 'slider-left')
-            setSelectedImage(prev => (prev === 0 ? productImagesSrc.length - 1 : prev - 1) % productImagesSrc.length);
+            setSelectedImage(prev => (prev === 0 ? productSliderImgs.length - 1 : prev - 1) % productSliderImgs.length);
         else if (clickedElement.classList[0] === 'slider-right') 
-            setSelectedImage(prev => (prev + 1) % productImagesSrc.length);
+            setSelectedImage(prev => (prev + 1) % productSliderImgs.length);
     }
 
     useEffect(() => {
@@ -70,7 +90,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
                     <img
-                        src={require('../../assets/images/' + productImagesSrc[selectedImage])}
+                        src={sliderImages[productSliderImgs[selectedImage]]}
                         alt='slider gelato.'
                     />
                 </div>

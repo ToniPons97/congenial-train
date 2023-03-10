@@ -14,11 +14,6 @@ const SugarProducts = () => {
     const location = useLocation();
     const currentSubroute = location.pathname.slice(location.pathname.lastIndexOf('/'), location.pathname.length);
 
-    const category = currentSubroute.slice(1, currentSubroute.length);
-    console.log(category);
-
-
-
 
     const fetchProducts = async (category) => {
         if (category === '/sugar' || category === '/sugar-free') {
@@ -90,9 +85,9 @@ const SugarProducts = () => {
                 </div>
                 <div className='products-display'>
                     {
-                        products.map(p => 
+                        products.map((p, i) => 
                             (<Product 
-                                key={p.id} 
+                                key={i} 
                                 name={p.name} 
                                 image={images[p.image]} 
                                 subroute={currentSubroute}     
