@@ -87,7 +87,7 @@ const SugarFreeProducts = () => {
                 <section className='products-container'>
                 <div className='products-selector'>
                     <div className='selector-text-wrapper'>
-                        <h3>With Sugar</h3>
+                        <h3>sugar free</h3>
                         <p>each scoop is a sweet and creamy treat that will leave you wanting more.</p>
                     </div>
                     <ProductCustomizer setTags={setTags} />
