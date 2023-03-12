@@ -9,6 +9,15 @@ const db = pgPromise()(`postgres://${DB_USER}:postgres@localhost:${DB_PORT}/${DB
 const setupDb = async () => {
     // Creating category and product tables.
     await db.none(`
+        DROP TABLE IF EXISTS users;
+        CREATE TABLE users (
+            id SERIAL NOT NULL PRIMARY KEY,
+            full_name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            password TEXT NOT NULL,
+            token TEXT
+        );
+
         DROP TABLE IF EXISTS product_category;
         CREATE TABLE product_category (
             id SERIAL NOT NULL PRIMARY KEY,

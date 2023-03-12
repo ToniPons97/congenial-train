@@ -10,6 +10,7 @@ import {
         getSugarProductByName, 
         getSugarFreeProductByName 
     } from "./controllers/products.js";
+import { getAllUsers, signUp } from "./controllers/users.js";
 
 dotenv.config();
 
@@ -42,6 +43,12 @@ app.get('/api/products/sugar-free/:name', getSugarFreeProductByName);
 
 // Get all sugar free products
 app.get('/api/products/sugar-free', getAllSugarFreeProducts);
+
+// Get all users
+app.get('/api/users', getAllUsers);
+
+// User signup
+app.post('/api/users/signup', signUp);
 
 
 
