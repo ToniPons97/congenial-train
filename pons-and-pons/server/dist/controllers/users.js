@@ -18,11 +18,12 @@ const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.status(200).json(users);
 });
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { full_name, email, password } = req.body;
+    const { fullName, email, password } = req.body;
+    console.log(fullName, email, password);
     const user = yield db.oneOrNone(`SELECT * FROM users WHERE email=$1`, email);
     if (!user) {
         const hashedPassword = sha512.sha512(password);
-        const { id } = yield db.one(`INSERT INTO users (full_name, email, password) VALUES ($1, $2, $3) RETURNING id`, [full_name, email, hashedPassword]);
+        const { id } = yield db.one(`INSERT INTO users (full_name, email, password) VALUES ($1, $2, $3) RETURNING id`, [fullName, email, hashedPassword]);
         res.status(201).json(jsonMessage(`${id}: Account with email ${email} created successfully.`));
     }
     else {

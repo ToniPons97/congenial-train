@@ -21,15 +21,16 @@ const getAllUsers = async (req: Request, res: Response) => {
 }
 
 const signUp = async (req: Request, res: Response) => {
-    const { full_name, email, password } = req.body;
+    const { fullName, email, password } = req.body;
+    console.log(fullName, email, password);
 
     const user: User | undefined | null = await db.oneOrNone(`SELECT * FROM users WHERE email=$1`, email);
 
     if (!user) {
         const hashedPassword = sha512.sha512(password);
-        const { id } =
-            await db.one(`INSERT INTO users (full_name, email, password) VALUES ($1, $2, $3) RETURNING id`,
-                [full_name, email, hashedPassword]);
+        const { id } = 
+            await db.one(`INSERT INTO users (full_name, email, password) VALUES ($1, $2, $3) RETURNING id`, 
+                [fullName, email, hashedPassword]);
         res.status(201).json(jsonMessage(`${id}: Account with email ${email} created successfully.`));
     } else {
         res.status(409).json(jsonMessage(`Email ${email} already in use.`));
