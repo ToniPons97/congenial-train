@@ -11,7 +11,7 @@ const SugarFreeProducts = () => {
     const location = useLocation();
     const currentSubroute = location.pathname.slice(location.pathname.lastIndexOf('/'), location.pathname.length);
 
-    const [ products, setProducts ] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const fetchProducts = async (category) => {
         if (category === '/sugar' || category === '/sugar-free') {
@@ -27,8 +27,8 @@ const SugarFreeProducts = () => {
         fetchProducts(currentSubroute);
     }, []);
 
-    const [ tags, setTags ] = useState([]);
-    
+    const [tags, setTags] = useState([]);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -59,7 +59,7 @@ const SugarFreeProducts = () => {
                         <div className='category-text-wrapper'>
                             <h2>sugar free</h2>
                             <p>
-                                Sweeten up your day with our sugar ice creams, available in a range of delicious flavors. Perfect for satisfying your sweet tooth cravings.                            
+                                Indulge guilt-free with our range of sugar-free gelatos, available in a variety of delicious flavors. Perfect for satisfying your sweet tooth cravings without compromising your health goals. Try our creamy and refreshing gelatos today and sweeten up your day, minus the sugar!
                             </p>
                         </div>
                     </div>
@@ -71,26 +71,26 @@ const SugarFreeProducts = () => {
             {
                 products &&
                 <section className='products-container'>
-                <div className='products-selector'>
-                    <div className='selector-text-wrapper'>
-                        <h3>sugar free</h3>
-                        <p>each scoop is a sweet and creamy treat that will leave you wanting more.</p>
+                    <div className='products-selector'>
+                        <div className='selector-text-wrapper'>
+                            <h3>sugar free</h3>
+                            <p>each scoop is a sweet and creamy treat that will leave you wanting more.</p>
+                        </div>
+                        <ProductCustomizer setTags={setTags} />
                     </div>
-                    <ProductCustomizer setTags={setTags} />
-                </div>
-                <div className='products-display'>
-                    {
-                        products.map((p, i) => 
-                            (<Product 
-                                key={i} 
-                                name={p.name} 
-                                image={imagesSF[p.image]} 
-                                subroute={currentSubroute}     
+                    <div className='products-display'>
+                        {
+                            products.map((p, i) =>
+                            (<Product
+                                key={i}
+                                name={p.name}
+                                image={imagesSF[p.image]}
+                                subroute={currentSubroute}
                             />))
-                    }
-                    {!products.length && <p>0 products match this description.</p>}
-                </div>
-            </section>
+                        }
+                        {!products.length && <p>0 products match this description.</p>}
+                    </div>
+                </section>
             }
             <div className='try-other-products'>
                 <h4>try our special flavors</h4>
