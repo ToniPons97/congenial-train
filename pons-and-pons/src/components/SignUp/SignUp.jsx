@@ -1,12 +1,30 @@
 import './SignUp.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SimpleReactValidator from 'simple-react-validator';
 import RippleButton from '../RippleButton/RippleButton';
 
 const SignUp = () => {
     const [ sign, setSign ] = useState('SIGN IN');
     const { type } = useParams();
     const [ formData, setFormData ] = useState({email: '', fullName: '', password: ''});
+    const [render, rerender] = useState(false);
+    const [visible, setVisible] = useState(false);
+
+    const handlePasswordVisibility = () => {
+        setVisible(prev => !prev);
+    }
+
+    const validator = useRef(new SimpleReactValidator({
+        className: 'text-danger',
+        messages: {
+            fullName: '',
+            email: '',
+            password: ''
+        },
+    }));
 
     useEffect(() => {
         if (type === 'signup')
@@ -17,34 +35,26 @@ const SignUp = () => {
 
     const handleInputChange = (ev) => {
         const {name, value} = ev.target;
+        setFormData(prev => ({...prev, [name]: value}));
+        
+        const formvalid = validator.current.allValid();
+        if (!formvalid) 
+            validator.current.showMessageFor(name);
 
-        if (name === 'full_name')
-            setFormData(prev => ({...prev, fullName: value}));
-        else if (name === 'email')
-            setFormData(prev => ({...prev, email: value}));
-        else if (name === 'password')
-            setFormData(prev => ({...prev, password: value}));        
     }
 
-
-
     const handleFormSubmition = () => {
-        if (type === 'signup') {
-            if (formData.email && formData.fullName && formData.password) {
-                postUserData();
-                setFormData(prev => ({email: '', fullName: '', password: ''}));
-            } else {
-                console.log('Incomplete Form');
-            }
-        } else if (type === 'signin') {
-            if (formData.email && formData.password) {
-                postUserData();
-                setFormData(prev => ({email: '', fullName: '', password: ''}));
-            } else {
-                console.log('Incomplete Form');
-            }
+        const formvalid = validator.current.allValid();
 
+        if (!formvalid) {
+            validator.current.showMessages();
+            rerender(prev => !prev);
+            console.log('not valid');
+            return;
         }
+
+        postUserData();
+        console.log('Incomplete Form');
     }
 
     const postUserData = async () => {
@@ -73,10 +83,42 @@ const SignUp = () => {
                     <h1>{ sign }</h1>
                     {
                         type === 'signup' &&
-                        <input onChange={handleInputChange} type='text' placeholder='full name' name='full_name' value={formData.fullName} autoComplete='false' />
+                        <input 
+                            onChange={handleInputChange} 
+                            type='text' 
+                            placeholder='full name' 
+                            name='fullName' 
+                            value={formData.fullName} 
+                            autoComplete='false' 
+                        />
                     }
-                    <input onChange={handleInputChange} type='email' placeholder='email' name='email' value={formData.email} autoComplete='false' />
-                    <input onChange={handleInputChange} type='password' placeholder='password' name='password' value={formData.password} />
+                    { type === 'signup' && validator.current.message('fullName', formData.fullName,'required') }
+                    
+                    <input 
+                        onChange={handleInputChange} 
+                        type='email' 
+                        placeholder='email' 
+                        name='email' 
+                        value={formData.email} 
+                        autoComplete='false' 
+                        onBlur={() => validator.current.showMessageFor('email')}
+                    />
+                    { validator.current.message('email', formData.email, 'required|email') }
+                    
+                    <div className='password-container'>
+                        <input 
+                            onChange={handleInputChange} 
+                            type={visible ? 'text' : 'password'} 
+                            placeholder='password' 
+                            name='password'
+                            value={formData.password}
+                            onBlur={() => validator.current.showMessageFor('password')}  
+                        />
+                        <span onClick={handlePasswordVisibility}>
+                            <FontAwesomeIcon icon={visible ? faEyeSlash : faEye} />
+                        </span>
+                    </div>
+                    { validator.current.message('password', formData.password, 'required|min:8') }
 
                     {
                         type === 'signin' &&
@@ -84,7 +126,7 @@ const SignUp = () => {
                     }
 
                     <RippleButton click={handleFormSubmition}>{sign}</RippleButton>
-                    <Link to={`/account/${type === 'signin' ? 'signup' : 'signin'}`}>
+                    <Link onClick={() => validator.current.hideMessages()} to={`/account/${type === 'signin' ? 'signup' : 'signin'}`}>
                         {
                             type === 'signup' ? 'already have an account' : 'create an account'
                         }
