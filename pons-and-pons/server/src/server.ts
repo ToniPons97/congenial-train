@@ -10,7 +10,8 @@ import {
         getSugarProductByName, 
         getSugarFreeProductByName 
     } from "./controllers/products.js";
-import { getAllUsers, signUp } from "./controllers/users.js";
+import { getAllUsers, signIn, signOut, signUp } from "./controllers/users.js";
+import authorize from "./authorize.js";
 
 dotenv.config();
 
@@ -47,9 +48,14 @@ app.get('/api/products/sugar-free', getAllSugarFreeProducts);
 // Get all users
 app.get('/api/users', getAllUsers);
 
-// User signup
+// User sign up
 app.post('/api/users/signup', signUp);
 
+// User sign in
+app.post('/api/users/signin', signIn);
+
+// User sign out
+app.post('/api/users/signout', authorize, signOut);
 
 
 app.listen(PORT);

@@ -28,13 +28,29 @@ const SignUp = () => {
 
 
 
-    const handleFormSubmition = (ev) => {
-        console.log(formData);
-        postUserData();
-        setFormData(prev => ({email: '', fullName: '', password: ''}));
+    const handleFormSubmition = () => {
+        if (type === 'signup') {
+            if (formData.email && formData.fullName && formData.password) {
+                postUserData();
+                setFormData(prev => ({email: '', fullName: '', password: ''}));
+            } else {
+                console.log('Incomplete Form');
+            }
+        } else if (type === 'signin') {
+            if (formData.email && formData.password) {
+                postUserData();
+                setFormData(prev => ({email: '', fullName: '', password: ''}));
+            } else {
+                console.log('Incomplete Form');
+            }
+
+        }
     }
 
     const postUserData = async () => {
+        if (type === 'signin')
+            setFormData(prev => ({email: prev.email, password: prev.password}));
+
         const data = JSON.stringify(formData);
         const apiUrl = `http://localhost:5000/api/users/${type}`;
         const res = await fetch(apiUrl, {

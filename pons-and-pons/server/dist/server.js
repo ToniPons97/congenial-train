@@ -4,7 +4,8 @@ import morgan from "morgan";
 import 'express-async-errors';
 import cors from 'cors';
 import { getAllProducts, getAllSugarFreeProducts, getAllSugarProducts, getSugarProductByName, getSugarFreeProductByName } from "./controllers/products.js";
-import { getAllUsers, signUp } from "./controllers/users.js";
+import { getAllUsers, signIn, signOut, signUp } from "./controllers/users.js";
+import authorize from "./authorize.js";
 dotenv.config();
 const { PORT } = process.env;
 const jsonMessage = (msg) => ({ msg });
@@ -27,6 +28,10 @@ app.get('/api/products/sugar-free/:name', getSugarFreeProductByName);
 app.get('/api/products/sugar-free', getAllSugarFreeProducts);
 // Get all users
 app.get('/api/users', getAllUsers);
-// User signup
+// User sign up
 app.post('/api/users/signup', signUp);
+// User sign in
+app.post('/api/users/signin', signIn);
+// User sign out
+app.post('/api/users/signout', authorize, signOut);
 app.listen(PORT);
