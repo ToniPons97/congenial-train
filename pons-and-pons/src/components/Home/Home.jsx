@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import classicGelato from '../../assets/images/Helado1-classic.png';
 import specialGelato from '../../assets/images/Helado2-special.png';
 import DiscoverLink from '../DiscoverLink/DiscoverLink';
+import { Helmet } from 'react-helmet-async';
 
 
 const Home = () => {
@@ -13,6 +14,9 @@ const Home = () => {
     
     return (
         <main className="landing-main">
+            <Helmet>
+                <title>Home | P&P</title>
+            </Helmet>
             <div className="classics landing-main-container">
                 <div className="gelato-img-wrapper">
                     <img src={classicGelato} alt="Classic gelato." />

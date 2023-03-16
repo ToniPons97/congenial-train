@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import { useLocation } from 'react-router-dom';
 import useImagesContext from '../../Custom Hooks/useImagesContext';
+import { Helmet } from 'react-helmet-async';
 
 const SugarProducts = () => {
     const [ products, setProducts ] = useState([]);
@@ -58,6 +59,9 @@ const SugarProducts = () => {
 
     return (
         <main className='product-main'>
+            <Helmet>
+                <title>Sugar | P&P</title>
+            </Helmet>
             <section className="with-product-main">
                 <div className='with-product-container'>
                     <div className="category-description">

@@ -5,6 +5,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SimpleReactValidator from 'simple-react-validator';
 import RippleButton from '../RippleButton/RippleButton';
+import { Helmet } from 'react-helmet-async';
 
 const SignUp = () => {
     const [ sign, setSign ] = useState('SIGN IN');
@@ -14,7 +15,8 @@ const SignUp = () => {
     const [visible, setVisible] = useState(false);
 
     const handlePasswordVisibility = () => {
-        setVisible(prev => !prev);
+        if (formData.password)
+            setVisible(prev => !prev);
     }
 
     const validator = useRef(new SimpleReactValidator({
@@ -78,6 +80,9 @@ const SignUp = () => {
 
     return (
         <div className="sign-up-container">
+            <Helmet>
+                <title>{sign} | P&P</title>
+            </Helmet>
             <main className="sign-up-main">
                 <div className="sign-up-main-container">
                     <h1>{ sign }</h1>
