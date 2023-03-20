@@ -41,7 +41,7 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     const user = yield db.oneOrNone(`SELECT * from users WHERE email = $1`, email);
-    if (user.password === sha512.sha512(password)) {
+    if ((user === null || user === void 0 ? void 0 : user.password) === sha512.sha512(password)) {
         const payload = { id: user.id, email };
         const SECRET = process.env.SECRET;
         const token = jwt.sign(payload, SECRET);

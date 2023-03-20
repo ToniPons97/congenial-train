@@ -11,6 +11,8 @@ const SignUp = () => {
     const [ sign, setSign ] = useState('SIGN IN');
     const { type } = useParams();
     const [ formData, setFormData ] = useState({email: '', fullName: '', password: ''});
+    const [responseMsg, setResponseMsg] = useState('');
+    
     const [render, rerender] = useState(false);
     const [visible, setVisible] = useState(false);
 
@@ -56,7 +58,6 @@ const SignUp = () => {
         }
 
         postUserData();
-        console.log('Incomplete Form');
     }
 
     const postUserData = async () => {
@@ -75,7 +76,18 @@ const SignUp = () => {
         });
 
         const json = await res.json();
-        console.log(json);
+        
+        console.log(res.status);
+        console.log(json.msg);
+
+        if (res.status === 409)
+            setResponseMsg(prev => 'This email is already registered. Please log in or use a different email to sign up.');
+        else if (res.status === 201)
+            setResponseMsg(prev => 'Account created successfully!');
+        else if (res.status === 404)
+            setResponseMsg(prev => 'Incorrect email or password.');
+
+        
     }
 
     return (
@@ -86,6 +98,9 @@ const SignUp = () => {
             <main className="sign-up-main">
                 <div className="sign-up-main-container">
                     <h1>{ sign }</h1>
+                    <div className='response-msg-dialog'>
+                        <p>{responseMsg}</p>
+                    </div>
                     {
                         type === 'signup' &&
                         <input 
@@ -131,7 +146,10 @@ const SignUp = () => {
                     }
 
                     <RippleButton click={handleFormSubmition}>{sign}</RippleButton>
-                    <Link onClick={() => validator.current.hideMessages()} to={`/account/${type === 'signin' ? 'signup' : 'signin'}`}>
+                    <Link onClick={() => {
+                        validator.current.hideMessages()
+                        setResponseMsg(prev => '');
+                        }} to={`/account/${type === 'signin' ? 'signup' : 'signin'}`}>
                         {
                             type === 'signup' ? 'already have an account' : 'create an account'
                         }

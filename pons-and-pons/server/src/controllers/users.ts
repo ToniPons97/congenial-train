@@ -48,7 +48,7 @@ const signIn = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     const user = await db.oneOrNone(`SELECT * from users WHERE email = $1`, email);
-    if (user.password === sha512.sha512(password)) {
+    if (user?.password === sha512.sha512(password)) {
         const payload = { id: user.id, email };
 
         const SECRET: any = process.env.SECRET;

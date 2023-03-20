@@ -18,6 +18,11 @@
             align-items: center;
             gap: 0.8rem;
 
+            .response-msg-dialog {
+                text-align: center;
+                padding: 5px;
+            }
+
             h1 {
                 font-weight: 200;
                 font-size: 28px;
