@@ -1,5 +1,6 @@
 .user-profile {
     padding: 80px 10px 0;
+    background: #F9F9F7;
     // height: 100vh;
 
     .user-profile-grid {
@@ -46,6 +47,7 @@
 
                 p {
                     margin: 5px 0;
+                    color: #67645E;
                 }
 
                 button {
@@ -88,4 +90,28 @@
             }
         }
     }
+}
+
+/* credit card */
+
+.credit-card-shape {
+    margin-top: 5px;
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 3px 3px #2c2c2c;
+    padding: 15px;
+
+    #obfuscated-card-number {
+        color: black;
+
+    }
+
+
+    span {
+        margin-right: 5px;
+    }
+
+
 }
