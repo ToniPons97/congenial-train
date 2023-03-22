@@ -16,6 +16,8 @@ const SignUp = () => {
     const [render, rerender] = useState(false);
     const [visible, setVisible] = useState(false);
 
+    const responseMsgRef = useRef(null);
+
     const handlePasswordVisibility = () => {
         if (formData.password)
             setVisible(prev => !prev);
@@ -80,12 +82,16 @@ const SignUp = () => {
         console.log(res.status);
         console.log(json.msg);
 
-        if (res.status === 409)
+        if (res.status === 409) {
+            responseMsgRef.current.classList.add('text-danger');
             setResponseMsg(prev => 'This email is already registered. Please log in or use a different email to sign up.');
-        else if (res.status === 201)
+        } else if (res.status === 201) {
+            responseMsgRef.current.classList.remove('text-danger');
             setResponseMsg(prev => 'Account created successfully!');
-        else if (res.status === 404)
+        } else if (res.status === 404) {
+            responseMsgRef.current.classList.add('text-danger');
             setResponseMsg(prev => 'Incorrect email or password.');
+        }
 
         
     }
@@ -99,11 +105,11 @@ const SignUp = () => {
                 <div className="sign-up-main-container">
                     <h1>{ sign }</h1>
                     <div className='response-msg-dialog'>
-                        <p>{responseMsg}</p>
+                        <p ref={responseMsgRef} className='text-danger'>{responseMsg}</p>
                     </div>
                     {
                         type === 'signup' &&
-                        <input 
+                        <input
                             onChange={handleInputChange} 
                             type='text' 
                             placeholder='full name' 
