@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp/SignUp";
 import SugarProducts from "./components/Products/SugarProducts";
 import SugarFreeProducts from "./components/Products/SugarFreeProducts";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             </Route>
             <Route path='/flavors/sugar/:flavor' element={<ProductDetails />} />
             <Route path='/flavors/sugar-free/:flavor' element={<ProductDetails />} />
+            <Route path='profile' element={<UserProfile />} />
         </Routes>
       </HelmetProvider>
       <Footer />

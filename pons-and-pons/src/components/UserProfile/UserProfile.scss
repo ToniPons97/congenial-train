@@ -1,0 +1,90 @@
+.user-profile {
+    padding: 80px 10px 0;
+    // height: 100vh;
+
+    .user-profile-grid {
+        border: 1px solid black;
+        padding-top: 10px;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        justify-items: center;
+        gap: 3rem;
+
+
+        & > div {
+            width: 350px;
+            height: 280px;
+            border: 1px solid tomato;
+
+            .profile-title {
+                border-bottom: 1px solid #67645E;
+                padding: 5px;
+                margin-bottom: 12px;
+
+                h2 {
+                    text-transform: uppercase;
+                    font-weight: normal;
+                    color: #2c2c2c;
+                }
+            }
+
+            .profile-content {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+
+
+                
+                h3 {
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    letter-spacing: 0.1ch;
+                }
+
+                p {
+                    margin: 5px 0;
+                }
+
+                button {
+                    width: 180px;
+                    height: 35px;
+
+                    appearance: none;
+                    background: none;
+                    border: 1px solid #67645E;
+                    border-radius: 20px;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-size: 14px;
+                    color: #2c2c2c;
+                    letter-spacing: 0.1ch;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.6;
+                        transition: opacity 0.3s;
+
+                    }
+                }
+
+                a {
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: #2c2c2c;
+                    
+                    &:visited {
+                        color: #2c2c2c;
+                    }
+
+                    &:hover, &:focus {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
