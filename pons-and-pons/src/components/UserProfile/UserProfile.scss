@@ -1,10 +1,10 @@
 .user-profile {
     padding: 80px 10px 0;
     background: #F9F9F7;
-    // height: 100vh;
+    height: 110vh;
 
     .user-profile-grid {
-        border: 1px solid black;
+        // border: 1px solid black;
         padding-top: 10px;
 
         display: grid;
@@ -17,12 +17,14 @@
         & > div {
             width: 350px;
             height: 280px;
-            border: 1px solid tomato;
+            // border: 1px solid lightgrey;
+            overflow-y: scroll;
+
 
             .profile-title {
                 border-bottom: 1px solid #67645E;
                 padding: 5px;
-                margin-bottom: 12px;
+                margin-bottom: 30px;
 
                 h2 {
                     text-transform: uppercase;
@@ -35,6 +37,9 @@
                 display: flex;
                 flex-direction: column;
                 gap: 0.8rem;
+                margin-bottom: 20px;
+
+
 
 
                 
@@ -50,7 +55,7 @@
                     color: #67645E;
                 }
 
-                button {
+                .change-password-btn {
                     width: 180px;
                     height: 35px;
 
