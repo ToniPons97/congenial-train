@@ -1,20 +1,26 @@
 .user-profile {
     padding: 80px 10px 0;
     background: #F9F9F7;
-    height: 110vh;
+    // height: 110vh;
 
     .user-profile-grid {
         // border: 1px solid black;
-        padding-top: 10px;
+        padding: 10px;
 
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        // grid-template-columns: repeat(3, 1fr);
+        // grid-template-rows: repeat(3, 1fr);
+
+        grid-template-areas:
+            "account wallet orders"
+            "address favorites customize";
+
+
         justify-items: center;
         gap: 3rem;
 
 
-        & > div {
+        &>div {
             width: 350px;
             height: 280px;
             // border: 1px solid lightgrey;
@@ -33,6 +39,7 @@
                 }
             }
 
+
             .profile-content {
                 display: flex;
                 flex-direction: column;
@@ -42,7 +49,7 @@
 
 
 
-                
+
                 h3 {
                     font-weight: bold;
                     text-transform: uppercase;
@@ -82,12 +89,13 @@
                     font-size: 12px;
                     font-weight: bold;
                     color: #2c2c2c;
-                    
+
                     &:visited {
                         color: #2c2c2c;
                     }
 
-                    &:hover, &:focus {
+                    &:hover,
+                    &:focus {
                         text-decoration: underline;
                         text-decoration-thickness: 2px;
                     }
@@ -119,4 +127,52 @@
     }
 
 
+}
+
+#my-account {
+    grid-area: account;
+}
+
+#my-wallet {
+    grid-area: wallet;
+}
+
+#my-orders {
+    grid-area: orders;
+}
+
+#my-address {
+    grid-area: address;
+}
+
+#my-favorites {
+    grid-area: favorites;
+}
+
+#customize {
+    grid-area: customize;
+}
+
+
+
+
+@media only screen and (max-width: 1210px) {
+    .user-profile>.user-profile-grid {
+        grid-template-areas:
+            "account wallet"
+            "address orders"
+            "favorites customize";
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .user-profile>.user-profile-grid {
+        grid-template-areas:
+            "account"
+            "wallet"
+            "address"
+            "orders"
+            "favorites"
+            "customize";
+    }
 }

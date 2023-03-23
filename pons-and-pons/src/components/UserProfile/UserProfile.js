@@ -13,7 +13,7 @@ const UserProfile = () => {
             <div className="user-profile-grid">
 
                 {/* my account  */}
-                <div>
+                <div id="my-account">
                     <section className="profile-title">
                         <h2>my account</h2>
                     </section>
@@ -24,12 +24,11 @@ const UserProfile = () => {
                             <p>doe.john@example.com</p>
                         </div>
                         <button className="change-password-btn">change password</button>
-                        <Link to="/">delete account</Link>
                     </section>
                 </div>
 
                 {/* my wallet */}
-                <div>
+                <div id="my-wallet">
                     <section className="profile-title">
                         <h2>my wallet</h2>
                     </section>
@@ -44,7 +43,7 @@ const UserProfile = () => {
 
                 {/* my orders */}
 
-                <div>
+                <div id="my-orders">
                     <section className="profile-title">
                         <h2>my orders</h2>
                     </section>
@@ -56,9 +55,11 @@ const UserProfile = () => {
 
                 {/* my address book */}
 
-                <div>
+                <div id="my-address">
                     <section className="profile-title">
-                        <h2>my address book</h2>
+                        <div className="address-book-title">
+                            <h2 >my address book</h2>
+                        </div>
                     </section>
                     <section className="profile-content">
                         <h3>my default billing address</h3>
@@ -85,7 +86,7 @@ const UserProfile = () => {
 
                 {/* my favorites */}
 
-                <div>
+                <div id="my-favorites">
                     <section className="profile-title">
                         <h2>my favorites</h2>
                     </section>
@@ -96,7 +97,7 @@ const UserProfile = () => {
 
                 {/* customize your account */}
 
-                <div>
+                <div id="customize">
                     <section className="profile-title">
                         <h2>customize your account</h2>
                     </section>
