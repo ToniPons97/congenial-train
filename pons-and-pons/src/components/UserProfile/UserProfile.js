@@ -9,7 +9,7 @@ const UserProfile = () => {
             <Helmet>
                 <title>Profile | P&P</title>
             </Helmet>
-            
+       
             <div className="user-profile-grid">
 
                 {/* my account  */}

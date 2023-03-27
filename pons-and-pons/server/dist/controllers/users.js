@@ -46,7 +46,7 @@ const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const SECRET = process.env.SECRET;
         const token = jwt.sign(payload, SECRET);
         yield db.none(`UPDATE users SET token = $2 WHERE id = $1`, [user.id, token]);
-        res.status(200).json({ id: user.id, email, token });
+        res.status(200).json({ email, token });
     }
     else {
         res.status(404).json(jsonMessage('Incorrect email or password.'));

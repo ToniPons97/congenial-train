@@ -55,7 +55,7 @@ const signIn = async (req: Request, res: Response) => {
         const token = jwt.sign(payload, SECRET);
 
         await db.none(`UPDATE users SET token = $2 WHERE id = $1`, [user.id, token]);
-        res.status(200).json({id: user.id, email, token});
+        res.status(200).json({email, token});
     } else {
         res.status(404).json(jsonMessage('Incorrect email or password.'));
     }

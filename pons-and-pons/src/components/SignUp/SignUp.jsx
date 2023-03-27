@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SimpleReactValidator from 'simple-react-validator';
 import RippleButton from '../RippleButton/RippleButton';
 import { Helmet } from 'react-helmet-async';
+import { useUserStore } from '../../state/userState';
 
 const SignUp = () => {
     const [ sign, setSign ] = useState('SIGN IN');
@@ -17,6 +18,10 @@ const SignUp = () => {
     const [visible, setVisible] = useState(false);
 
     const responseMsgRef = useRef(null);
+
+    const userState  = useUserStore(state => state.userState);
+    const setEmail = useUserStore(state => state.setEmail);
+    const setToken = useUserStore(state => state.setToken);
 
     const handlePasswordVisibility = () => {
         if (formData.password)
@@ -78,9 +83,11 @@ const SignUp = () => {
         });
 
         const json = await res.json();
+
         
         console.log(res.status);
-        console.log(json.msg);
+        // console.log(json.msg);
+        console.log(json);
 
         if (res.status === 409) {
             responseMsgRef.current.classList.add('text-danger');
@@ -91,15 +98,21 @@ const SignUp = () => {
         } else if (res.status === 404) {
             responseMsgRef.current.classList.add('text-danger');
             setResponseMsg(prev => 'Incorrect email or password.');
-        }
-
+        }      
         
+        if (res.status === 200) {
+            setEmail(json.email);
+            setToken(json.token);
+
+            console.log(userState);
+        }
+            
     }
 
     return (
         <div className="sign-up-container">
             <Helmet>
-                <title>{sign} | P&P</title>
+                <title>{sign.slice(0, 1) + sign.slice(1).toLocaleLowerCase()} | P&P</title>
             </Helmet>
             <main className="sign-up-main">
                 <div className="sign-up-main-container">
