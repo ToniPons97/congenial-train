@@ -9,6 +9,9 @@
             "address favorites customize";
         
         justify-items: center;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
         gap: 3rem;
         
         padding: 10px;
@@ -108,12 +111,9 @@
 
     }
 
-
     span {
         margin-right: 5px;
     }
-
-
 }
 
 #my-account {
@@ -141,8 +141,6 @@
 }
 
 
-
-
 @media only screen and (max-width: 1210px) {
     .user-profile>.user-profile-grid {
         grid-template-areas:
@@ -161,5 +159,9 @@
             "orders"
             "favorites"
             "customize";
+
+        .profile-title {
+            text-align: center;
+        }
     }
 }
