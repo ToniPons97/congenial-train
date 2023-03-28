@@ -54,7 +54,19 @@ const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const signOut = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
-    yield db.none(`UPDATE user SET token = NULL WHERE id = $1`, user === null || user === void 0 ? void 0 : user.id);
+    yield db.none(`UPDATE users SET token = NULL WHERE id = $1`, user === null || user === void 0 ? void 0 : user.id);
     res.status(200).json(jsonMessage('Logout successfully.'));
 });
-export { getAllUsers, signUp, signIn, signOut };
+// This endpoint will only serve the user's email. 
+// Later it has to serve all extra user info: 
+// Billing address, shipping address, phone number, payment methods (credit cards...)
+// Previous and current orders.
+const getUserData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = req.user;
+    const fullName = yield db.none(`SELECT full_name FROM users WHERE id = $1`, user === null || user === void 0 ? void 0 : user.id);
+    if (fullName)
+        res.status(200).json(jsonMessage(fullName));
+    else
+        res.status(404).json(jsonMessage('User not found.'));
+});
+export { getAllUsers, signUp, signIn, signOut, getUserData };

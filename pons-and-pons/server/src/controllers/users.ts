@@ -63,13 +63,30 @@ const signIn = async (req: Request, res: Response) => {
 
 const signOut = async (req: Request, res: Response) => {
     const user: any = req.user;
-    await db.none(`UPDATE user SET token = NULL WHERE id = $1`, user?.id);
+    await db.none(`UPDATE users SET token = NULL WHERE id = $1`, user?.id);
     res.status(200).json(jsonMessage('Logout successfully.'));
+}
+
+// This endpoint will only serve the user's email. 
+// Later it has to serve all extra user info: 
+// Billing address, shipping address, phone number, payment methods (credit cards...)
+// Previous and current orders.
+const getUserData = async (req: Request, res: Response) => {
+    const user: any = req.user;
+
+    const fullName: string | null = await db.none(`SELECT full_name FROM users WHERE id = $1`, user?.id);
+
+    if (fullName)
+        res.status(200).json(jsonMessage(fullName));
+    else 
+        res.status(404).json(jsonMessage('User not found.'));
+
 }
 
 export {
     getAllUsers,
     signUp,
     signIn,
-    signOut
+    signOut,
+    getUserData
 }

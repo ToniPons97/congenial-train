@@ -4,8 +4,9 @@ import morgan from "morgan";
 import 'express-async-errors';
 import cors from 'cors';
 import { getAllProducts, getAllSugarFreeProducts, getAllSugarProducts, getSugarProductByName, getSugarFreeProductByName } from "./controllers/products.js";
-import { getAllUsers, signIn, signOut, signUp } from "./controllers/users.js";
+import { getAllUsers, getUserData, signIn, signOut, signUp } from "./controllers/users.js";
 import authorize from "./authorize.js";
+import './passport.js';
 dotenv.config();
 const { PORT } = process.env;
 const jsonMessage = (msg) => ({ msg });
@@ -33,5 +34,7 @@ app.post('/api/users/signup', signUp);
 // User sign in
 app.post('/api/users/signin', signIn);
 // User sign out
-app.post('/api/users/signout', authorize, signOut);
+app.get('/api/users/signout', authorize, signOut);
+// Get full name from user (testing if user is authenticated.)
+app.get('/api/users/info', authorize, getUserData);
 app.listen(PORT);

@@ -1,6 +1,6 @@
 import './SignUp.scss';
 import { useEffect, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SimpleReactValidator from 'simple-react-validator';
@@ -22,6 +22,8 @@ const SignUp = () => {
     const userState  = useUserStore(state => state.userState);
     const setEmail = useUserStore(state => state.setEmail);
     const setToken = useUserStore(state => state.setToken);
+
+    const navigate = useNavigate();
 
     const handlePasswordVisibility = () => {
         if (formData.password)
@@ -104,7 +106,10 @@ const SignUp = () => {
             setEmail(json.email);
             setToken(json.token);
 
-            console.log(userState);
+            // console.log(userState);
+
+            navigate('/profile');
+
         }
             
     }

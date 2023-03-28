@@ -10,8 +10,15 @@ import {
         getSugarProductByName, 
         getSugarFreeProductByName 
     } from "./controllers/products.js";
-import { getAllUsers, signIn, signOut, signUp } from "./controllers/users.js";
+import { 
+        getAllUsers, 
+        getUserData, 
+        signIn, 
+        signOut, 
+        signUp 
+    } from "./controllers/users.js";
 import authorize from "./authorize.js";
+import './passport.js';
 
 dotenv.config();
 
@@ -55,7 +62,10 @@ app.post('/api/users/signup', signUp);
 app.post('/api/users/signin', signIn);
 
 // User sign out
-app.post('/api/users/signout', authorize, signOut);
+app.get('/api/users/signout', authorize, signOut);
+
+// Get full name from user (testing if user is authenticated.)
+app.get('/api/users/info', authorize, getUserData);
 
 
 app.listen(PORT);
