@@ -1,6 +1,6 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { useEffect } from "react";
+import { useState } from "react";
 
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
@@ -39,38 +39,22 @@ const App = () => {
 }
 
 const RequireAuth = ({ children, redirectTo }) => {
-
-  const navigate = useNavigate();
+  let [isAuthed, setIsAuthed] = useState(true);
+  
   const useParent = async () => {
-    let isAuthenticated = await useAuth();
-  
-    console.log('isAuthed ' + isAuthenticated);
-  
-    // return isAuthenticated ? children : <Navigate to={redirectTo} />;
-
-
-    setTimeout(() => {
-      if (!isAuthenticated)
-        navigate(redirectTo);
-    }, 2000);
+    isAuthed = await useAuth();
+    setIsAuthed(prev => isAuthed);
   }
   
   useParent();
-  return <UserProfile />;
-
-
+  return isAuthed ? <UserProfile /> : <Navigate to={redirectTo} replace={true} />;
 }
 
 const useAuth = async () => {
 
   const userState = useUserStore(state => state.userState);
-  // const setFullName = useUserStore(state => setFullName);
-  console.log(userState);
-
 
   const apiEndpoint = 'http://localhost:5000/api/users/info';
-
-
   const res = await fetch(
     apiEndpoint, {
       method: 'get',
@@ -80,18 +64,9 @@ const useAuth = async () => {
         'Authorization': `Bearer ${userState.token}`
       }
     }
-
-    
-    
-    
   );
-  
-  const json = await res.json();
 
-  console.log(res.status);
-  console.log(json);
-
-  return res.status === 200 ? true : false
+  return res.status === 200;
 }
 
 export default App;
