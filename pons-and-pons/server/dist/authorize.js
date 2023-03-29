@@ -14,17 +14,24 @@ const getTokenFromHeader = (req) => {
     const authorization = req.headers.authorization;
     if (authorization && authorization.split(' ')[0] === 'Bearer')
         return authorization.split(' ')[1];
+    else
+        console.log('NO AUTHORIZATION HEADER');
 };
 const authorize = (req, res, next) => {
     passport.authenticate('jwt', { session: false }, (err, user) => __awaiter(void 0, void 0, void 0, function* () {
-        const tokenFromDB = yield db.one(`SELECT token FROM users WHERE id = $1`, user.id);
-        const tokenFromHeader = getTokenFromHeader(req);
-        if (!user || err || tokenFromDB.token !== tokenFromHeader) {
-            res.status(401).json(jsonMessage('Unauthorized.'));
+        if (user) {
+            const tokenFromDB = yield db.one(`SELECT token FROM users WHERE id = $1`, user.id);
+            const tokenFromHeader = getTokenFromHeader(req);
+            if (!user || err || tokenFromDB.token !== tokenFromHeader) {
+                res.status(401).json(jsonMessage('Unauthorized.'));
+            }
+            else {
+                req.user = user;
+                next();
+            }
         }
         else {
-            req.user = user;
-            next();
+            res.status(401).json(jsonMessage('Unauthorized'));
         }
     }))(req, res, next);
 };

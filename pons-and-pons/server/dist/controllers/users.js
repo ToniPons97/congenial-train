@@ -54,6 +54,7 @@ const signIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const signOut = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
+    console.log('USER: ' + user);
     yield db.none(`UPDATE users SET token = NULL WHERE id = $1`, user === null || user === void 0 ? void 0 : user.id);
     res.status(200).json(jsonMessage('Logout successfully.'));
 });
@@ -63,7 +64,7 @@ const signOut = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 // Previous and current orders.
 const getUserData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
-    const fullName = yield db.none(`SELECT full_name FROM users WHERE id = $1`, user === null || user === void 0 ? void 0 : user.id);
+    const fullName = yield db.oneOrNone(`SELECT full_name FROM users WHERE id = $1`, user === null || user === void 0 ? void 0 : user.id);
     if (fullName)
         res.status(200).json(jsonMessage(fullName));
     else

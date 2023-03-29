@@ -63,6 +63,9 @@ const signIn = async (req: Request, res: Response) => {
 
 const signOut = async (req: Request, res: Response) => {
     const user: any = req.user;
+
+    console.log('USER: ' + user);
+
     await db.none(`UPDATE users SET token = NULL WHERE id = $1`, user?.id);
     res.status(200).json(jsonMessage('Logout successfully.'));
 }
@@ -74,7 +77,7 @@ const signOut = async (req: Request, res: Response) => {
 const getUserData = async (req: Request, res: Response) => {
     const user: any = req.user;
 
-    const fullName: string | null = await db.none(`SELECT full_name FROM users WHERE id = $1`, user?.id);
+    const fullName: string | null = await db.oneOrNone(`SELECT full_name FROM users WHERE id = $1`, user?.id);
 
     if (fullName)
         res.status(200).json(jsonMessage(fullName));

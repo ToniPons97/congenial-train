@@ -18,7 +18,7 @@ passport.use(new passportJWT.Strategy({
     jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
     algorithms: ['HS256']
 }, (payload, done) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield db.one(`SELECT * FROM users WHERE id=$1`, payload.id);
+    const user = yield db.oneOrNone(`SELECT * FROM users WHERE id=$1`, payload.id);
     try {
         return user ? done(null, user) : done(new Error('User not found'));
     }

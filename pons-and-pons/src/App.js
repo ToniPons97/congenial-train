@@ -1,5 +1,6 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { useEffect } from "react";
 
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
@@ -28,9 +29,7 @@ const App = () => {
             <Route path='/flavors/sugar/:flavor' element={<ProductDetails />} />
             <Route path='/flavors/sugar-free/:flavor' element={<ProductDetails />} />
             <Route path='profile' element={
-              <RequireAuth redirectTo='/account/signin'>
-                <UserProfile />
-              </RequireAuth>
+              <RequireAuth redirectTo='/account/signin' />
             } />
         </Routes>
       </HelmetProvider>
@@ -40,19 +39,59 @@ const App = () => {
 }
 
 const RequireAuth = ({ children, redirectTo }) => {
-  let isAuthenticated = useAuth();
-  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+
+  const navigate = useNavigate();
+  const useParent = async () => {
+    let isAuthenticated = await useAuth();
+  
+    console.log('isAuthed ' + isAuthenticated);
+  
+    // return isAuthenticated ? children : <Navigate to={redirectTo} />;
+
+
+    setTimeout(() => {
+      if (!isAuthenticated)
+        navigate(redirectTo);
+    }, 2000);
+  }
+  
+  useParent();
+  return <UserProfile />;
+
+
 }
 
-const useAuth = () => {
+const useAuth = async () => {
 
   const userState = useUserStore(state => state.userState);
   // const setFullName = useUserStore(state => setFullName);
-
   console.log(userState);
 
 
-  return true;
+  const apiEndpoint = 'http://localhost:5000/api/users/info';
+
+
+  const res = await fetch(
+    apiEndpoint, {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userState.token}`
+      }
+    }
+
+    
+    
+    
+  );
+  
+  const json = await res.json();
+
+  console.log(res.status);
+  console.log(json);
+
+  return res.status === 200 ? true : false
 }
 
 export default App;
