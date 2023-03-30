@@ -1,9 +1,67 @@
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import "./UserProfile.scss";
 import RippleButton from '../RippleButton/RippleButton';
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { useUserStore } from "../../state/userState";
+import { useNavigate } from "react-router-dom";
+
+import { useEffect } from "react";
 
 const UserProfile = () => {
+    
+    const data = useUserStore(state => state.userState);
+    const setFullName = useUserStore(state => state.setFullName);
+    const resetUserState = useUserStore(state => state.resetUserState);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+        fetchFullName();
+
+    }, []);
+
+
+    const signUserOut = async () => {
+        const apiEndpoint = 'http://localhost:5000/api/users/signout';
+        const res = await fetch(
+            apiEndpoint, {
+                method: 'get',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${data.token}`
+                }
+            }
+        );
+
+        if (res.status === 200) {
+            console.log(res.status);
+            resetUserState();
+            navigate('/account/signin');
+        }
+    }
+
+    const fetchFullName = async () => {
+        if (data.token) {
+            const apiEndpoint = 'http://localhost:5000/api/users/info';
+            const res = await fetch(
+              apiEndpoint, {
+                method: 'get',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${data.token}`
+                }
+              }
+            );
+
+            const json = await res.json();
+            setFullName(json.msg.full_name);
+            console.log(data.fullName);
+            
+        }
+    }
+
     return (
         <div className="user-profile">
             <Helmet>
@@ -20,8 +78,9 @@ const UserProfile = () => {
                     <section className="profile-content">
                         <h3>profile information</h3>
                         <div>
-                            <p>John Doe</p>
-                            <p>doe.john@example.com</p>
+                            <p>{ data.fullName }</p>
+                            {/* <p>doe.john@example.com</p> */}
+                            <p>{ data.email }</p>
                         </div>
                         <button className="change-password-btn">change password</button>
                     </section>
@@ -64,7 +123,7 @@ const UserProfile = () => {
                     <section className="profile-content">
                         <h3>my default billing address</h3>
                         <div>
-                            <p>John Doe</p>
+                            <p>{ data.fullName }</p>
                             <p>Lucas County, Ohio, United States</p>
                             <p>Maumee, 43537</p>
                             <p>216-200-7534</p>
@@ -74,7 +133,7 @@ const UserProfile = () => {
                     <section className="profile-content">
                         <h3>my default shipping address</h3>
                         <div>
-                            <p>John Doe</p>
+                            <p>{ data.fullName }</p>
                             <p>Lucas County, Ohio, United States</p>
                             <p>Maumee, 43537</p>
                             <p>216-200-7534</p>
@@ -106,6 +165,7 @@ const UserProfile = () => {
                         <RippleButton
                             children='close session'
                             alignSelf="flex-start"
+                            click={signUserOut}
                         />
                     </section>
                 </div>

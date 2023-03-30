@@ -38,7 +38,7 @@ const App = () => {
   );
 }
 
-const RequireAuth = ({ children, redirectTo }) => {
+const RequireAuth = ({ redirectTo }) => {
   let [isAuthed, setIsAuthed] = useState(true);
   
   const useParent = async () => {
@@ -53,6 +53,7 @@ const RequireAuth = ({ children, redirectTo }) => {
 const useAuth = async () => {
 
   const userState = useUserStore(state => state.userState);
+  const setFullName = useUserStore(state => state.setFullName);
 
   const apiEndpoint = 'http://localhost:5000/api/users/info';
   const res = await fetch(
@@ -66,6 +67,7 @@ const useAuth = async () => {
     }
   );
 
+  const json = await res.json();
   return res.status === 200;
 }
 
