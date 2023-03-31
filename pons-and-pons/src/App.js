@@ -29,7 +29,13 @@ const App = () => {
             <Route path='/flavors/sugar/:flavor' element={<ProductDetails />} />
             <Route path='/flavors/sugar-free/:flavor' element={<ProductDetails />} />
             <Route path='profile' element={
-              <RequireAuth redirectTo='/account/signin' />
+              <RequireAuth 
+                apiEndpoint='http://localhost:5000/api/users/info'
+                redirectTo='/account/signin' 
+                component={<UserProfile />}
+              >
+                <UserProfile />
+              </RequireAuth>
             } />
         </Routes>
       </HelmetProvider>
@@ -38,24 +44,26 @@ const App = () => {
   );
 }
 
-const RequireAuth = ({ redirectTo }) => {
+const RequireAuth = ({ redirectTo, children, apiEndpoint }) => {
   let [isAuthed, setIsAuthed] = useState(true);
   
   const useParent = async () => {
-    isAuthed = await useAuth();
+    isAuthed = await useAuth(apiEndpoint);
     setIsAuthed(prev => isAuthed);
   }
   
   useParent();
-  return isAuthed ? <UserProfile /> : <Navigate to={redirectTo} replace={true} />;
+
+  console.log(isAuthed);
+
+  return isAuthed ? children : <Navigate to={redirectTo} replace={true} />;
 }
 
-const useAuth = async () => {
+const useAuth = async (apiEndpoint) => {
 
   const userState = useUserStore(state => state.userState);
   const setFullName = useUserStore(state => state.setFullName);
 
-  const apiEndpoint = 'http://localhost:5000/api/users/info';
   const res = await fetch(
     apiEndpoint, {
       method: 'get',
