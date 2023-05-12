@@ -68,7 +68,7 @@ const UserProfile = () => {
                 {
                     data.token &&
                     <>
-                        // my account
+                        {/* // my account */}
                         <div id="my-account">
                             <section className="profile-title">
                                 <h2>my account</h2>
@@ -83,7 +83,7 @@ const UserProfile = () => {
                             </section>
                         </div>
 
-                        //my wallet
+                        {/* //my wallet */}
                         <div id="my-wallet">
                             <section className="profile-title">
                                 <h2>my wallet</h2>
@@ -97,7 +97,7 @@ const UserProfile = () => {
                             </section>
                         </div>
 
-                        //my orders
+                        {/* //my orders */}
                         <div id="my-orders">
                             <section className="profile-title">
                                 <h2>my orders</h2>
@@ -108,7 +108,7 @@ const UserProfile = () => {
                             </section>
                         </div>
 
-                        //my address book
+                        {/* //my address book */}
                         <div id="my-address">
                             <section className="profile-title">
                                 <div className="address-book-title">
@@ -137,7 +137,7 @@ const UserProfile = () => {
                             </section>
                         </div>
 
-                        // my favorites
+                        {/* // my favorites */}
                         <div id="my-favorites">
                             <section className="profile-title">
                                 <h2>my favorites</h2>
@@ -147,7 +147,7 @@ const UserProfile = () => {
                             </section>
                         </div>
 
-                        // customize your account
+                        {/* // customize your account */}
                         <div id="customize">
                             <section className="profile-title">
                                 <h2>customize your account</h2>
